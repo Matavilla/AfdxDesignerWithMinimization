@@ -4,3 +4,7 @@ This repo includes the following components:
 - Verifier of network configuration
 - Response time analyzer based on Trajectory Approach (modified a bit to get faster calculations)
 - Algorithm of designing virtual links configurations by given data flows with all constraints satisfaction
+
+
+To Run GUI use python2.
+You can also use this algorithm without GUI.
