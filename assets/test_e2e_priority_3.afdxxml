@@ -1,0 +1,27 @@
+<?xml version='1.0'?>
+<afdxxml name="test project">
+    <resources>
+        <endSystem x="293.5" y="159.5" number="1" ports="1" name="endSystem1"/>
+        <endSystem x="298.5" y="499.5" number="2" ports="2" name="endSystem2"/>
+        <switch x="371.5" y="319.5" number="3" ports="3,4,5" name="switch1"/>
+        <endSystem x="499.5" y="182.5" number="4" ports="6" name="endSystem3"/>
+        <link toType="1" from="1" capacity="12500" to="3" fromType="0"/>
+        <link toType="0" from="4" capacity="12500" to="2" fromType="1"/>
+        <link toType="1" from="6" capacity="12500" to="5" fromType="0"/>
+    </resources>
+    <virtualLinks>
+        <virtualLink responseTime="120" bag="1" dest="2" lmax="500" number="1" id="Virtual Link 1" source="1">
+            <path dest="2" path="1,3h,2" source="1"/>
+        </virtualLink>
+        <virtualLink responseTime="128" bag="1" dest="2" lmax="100" number="2" id="Virtual Link 2" source="1">
+            <path dest="2" path="1,3l,2" source="1"/>
+        </virtualLink>
+        <virtualLink responseTime="128" bag="1" dest="2" lmax="200" number="3" id="Virtual Link 3" source="1">
+            <path dest="2" path="1,3l,2" source="1"/>
+        </virtualLink>
+        <virtualLink responseTime="72" bag="1" dest="2" lmax="100" number="4" id="Virtual Link 4" source="4">
+            <path dest="2" path="4,3l,2" source="4"/>
+        </virtualLink>
+    </virtualLinks>
+    <dataFlows/>
+</afdxxml>

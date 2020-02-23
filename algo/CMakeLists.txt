@@ -1,0 +1,32 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
+
+PROJECT(AFDX_DESIGN)
+
+FIND_PACKAGE ( Qt4 REQUIRED )
+INCLUDE( ${QT_USE_FILE})
+ADD_DEFINITIONS(${QT_DEFINITIONS})
+
+INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}
+      interface/
+      model/
+      operations/
+      verifier/
+      responseTimeEstimator/
+      designer/
+      )
+SET ( COMPONENTS
+      interface
+      operations
+      verifier
+      responseTimeEstimator
+      designer
+      )
+
+FOREACH(COMPONENT ${COMPONENTS})
+   ADD_SUBDIRECTORY(${COMPONENT})
+ENDFOREACH(COMPONENT)
+
+SET(LIBRARY_SET ${COMPONENTS} ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${QT_QTXML_LIBRARY})
+
+ADD_EXECUTABLE(${PROJECT_NAME} AFDX_DESIGN.cpp)
+TARGET_LINK_LIBRARIES (${PROJECT_NAME} ${LIBRARY_SET})
