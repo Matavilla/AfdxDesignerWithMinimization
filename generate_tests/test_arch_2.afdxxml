@@ -21,29 +21,29 @@
 		<partition connectedTo="16" name="partition5" number="18" x="750.5" y="486.5"/>
 		<partition connectedTo="17" name="partition6" number="19" x="878.5" y="495.5"/>
 		<switch name="switch10" number="20" ports="44,45,46" x="566.5" y="46.5"/>
-		<link capacity="12500" from="1" fromType="0" to="4" toType="0"/>
-		<link capacity="1250" from="5" fromType="0" to="14" toType="0"/>
-		<link capacity="12500" from="7" fromType="0" to="2" toType="0"/>
-		<link capacity="12500" from="3" fromType="0" to="10" toType="0"/>
-		<link capacity="1250" from="11" fromType="0" to="20" toType="0"/>
-		<link capacity="1250" from="21" fromType="0" to="26" toType="0"/>
-		<link capacity="1250" from="27" fromType="0" to="15" toType="0"/>
-		<link capacity="1250" from="44" fromType="0" to="22" toType="0"/>
-		<link capacity="1250" from="45" fromType="0" to="16" toType="0"/>
-		<link capacity="1250" from="46" fromType="0" to="33" toType="0"/>
-		<link capacity="1250" from="34" fromType="0" to="39" toType="0"/>
-		<link capacity="12500" from="40" fromType="0" to="42" toType="0"/>
-		<link capacity="12500" from="43" fromType="0" to="29" toType="0"/>
-		<link capacity="1250" from="30" fromType="0" to="35" toType="0"/>
-		<link capacity="1250" from="28" fromType="0" to="36" toType="0"/>
-		<link capacity="1250" from="31" fromType="0" to="23" toType="0"/>
-		<link capacity="1250" from="8" fromType="0" to="24" toType="0"/>
-		<link capacity="1250" from="12" fromType="0" to="37" toType="0"/>
-		<link capacity="1250" from="17" fromType="0" to="9" toType="0"/>
-		<link capacity="1250" from="18" fromType="0" to="13" toType="0"/>
-		<link capacity="1250" from="19" fromType="0" to="32" toType="0"/>
-		<link capacity="1250" from="25" fromType="0" to="41" toType="0"/>
-		<link capacity="1250" from="38" fromType="0" to="6" toType="0"/>
+		<link capacity="12500" length="2" from="1" fromType="0" to="4" toType="0"/>
+		<link capacity="1250" length="2" from="5" fromType="0" to="14" toType="0"/>
+		<link capacity="12500" length="2" from="7" fromType="0" to="2" toType="0"/>
+		<link capacity="12500" length="2" from="3" fromType="0" to="10" toType="0"/>
+		<link capacity="1250" length="2" from="11" fromType="0" to="20" toType="0"/>
+		<link capacity="1250" length="2" from="21" fromType="0" to="26" toType="0"/>
+		<link capacity="1250" length="2" from="27" fromType="0" to="15" toType="0"/>
+		<link capacity="1250" length="2" from="44" fromType="0" to="22" toType="0"/>
+		<link capacity="1250" length="2" from="45" fromType="0" to="16" toType="0"/>
+		<link capacity="1250" length="2" from="46" fromType="0" to="33" toType="0"/>
+		<link capacity="1250" length="2" from="34" fromType="0" to="39" toType="0"/>
+		<link capacity="12500" length="2" from="40" fromType="0" to="42" toType="0"/>
+		<link capacity="12500" length="2" from="43" fromType="0" to="29" toType="0"/>
+		<link capacity="1250" length="2" from="30" fromType="0" to="35" toType="0"/>
+		<link capacity="1250" length="2" from="28" fromType="0" to="36" toType="0"/>
+		<link capacity="1250" length="2" from="31" fromType="0" to="23" toType="0"/>
+		<link capacity="1250" length="2" from="8" fromType="0" to="24" toType="0"/>
+		<link capacity="1250" length="2" from="12" fromType="0" to="37" toType="0"/>
+		<link capacity="1250" length="2" from="17" fromType="0" to="9" toType="0"/>
+		<link capacity="1250" length="2" from="18" fromType="0" to="13" toType="0"/>
+		<link capacity="1250" length="2" from="19" fromType="0" to="32" toType="0"/>
+		<link capacity="1250" length="2" from="25" fromType="0" to="41" toType="0"/>
+		<link capacity="1250" length="2" from="38" fromType="0" to="6" toType="0"/>
 	</resources>
 	<virtualLinks/>
 	<dataFlows>
