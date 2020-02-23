@@ -41,9 +41,11 @@ class LinkDialog(QDialog):
         self.ui.setupUi(self)
         self.valid = QIntValidator(0, 1000000, self)
         self.ui.capacity.setValidator(self.valid)
+        self.ui.length.setValidator(self.valid)
         
     def Load(self, l):
-        self.ui.capacity.setText(str(l.capacity) )
+        self.ui.capacity.setText(str(l.capacity))
+        self.ui.length.setText(str(l.length))
         self.port1 = l.port1
         self.port2 = l.port2
         self.ui.port1Name.setText("Port " + self.port1.parent.id + " type:")
@@ -59,6 +61,7 @@ class LinkDialog(QDialog):
         
     def SetResult(self, l):
         l.capacity = int(self.ui.capacity.text())
+        l.length = int(self.ui.length.text())
         self.port1.type =  PortType.FIFO if (self.ui.port1Type.currentText() == "FIFO") else PortType.PRIORITIZED
         self.port2.type =  PortType.FIFO if (self.ui.port2Type.currentText() == "FIFO") else PortType.PRIORITIZED 
         
