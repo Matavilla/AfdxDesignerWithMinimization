@@ -73,7 +73,7 @@ class Connection:
         self.e2 = e2
         
 class Link:
-    def __init__(self, port1, port2, capacity = 12500):
+    def __init__(self, port1, port2, capacity = 12500, length = 1):
         self.e1 = port1.parent
         self.e2 = port2.parent
         port1.link = self
@@ -81,6 +81,7 @@ class Link:
         self.capacity = capacity
         self.port1 = port1
         self.port2 = port2
+        self.length = length
 
 class Path:
     def __init__(self):
@@ -429,6 +430,7 @@ class Network:
         for link in self.links:
             tag = dom.createElement("link")
             tag.setAttribute("capacity", str(link.capacity))
+            tag.setAttribute("length", str(link.length))
             tag.setAttribute("from", str(link.port1.number))
             tag.setAttribute("fromType", str(link.port1.type))
             tag.setAttribute("to", str(link.port2.number))
@@ -517,6 +519,7 @@ class Network:
                 destination = int(link.getAttribute("to"))
                 e = Link(ports[source], ports[destination], 0)
                 e.capacity = link.getAttribute("capacity")
+                e.length = link.getAttribute("length")
                 ports[source].type = PortType.FIFO if int(link.getAttribute("fromType")) == 0 else PortType.PRIORITIZED
                 ports[destination].type = PortType.FIFO if int(link.getAttribute("toType")) == 0 else PortType.PRIORITIZED
                 self.links.append(e)
