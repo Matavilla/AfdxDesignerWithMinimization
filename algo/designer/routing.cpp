@@ -385,7 +385,7 @@ Path* Routing::searchPathKShortes(Network * network, NetElement* source, NetElem
 }
 
 static float countWeightHops(Link* link, Port* fromPort, long capacity) {
-    return 1.0;
+    return link->getLength();
 }
 
 static float countWeightMaxRemainingBw(Link* link, Port* fromPort, long capacity) {
