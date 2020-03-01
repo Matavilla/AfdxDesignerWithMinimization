@@ -1,0 +1,11 @@
+*.pyc
+*.cmake
+Makefile
+*.cmake
+*.txt
+*.a
+*.cxx_parameters
+
+/tmp
+/algo/*/CMakeFiles
+/algo/CMakeFiles
