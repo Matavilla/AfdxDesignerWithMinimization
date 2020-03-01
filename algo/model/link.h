@@ -7,12 +7,13 @@
 
 class Link {
 public:
-	Link(Port* port1, Port* port2, long capacity = 12500):
+	Link(Port* port1, Port* port2, long capacity = 12500, float length2 = 1.0):
 		port1(port1),
 		port2(port2),
 		maxCapacity(capacity),
 		freeCapacityFromPort1(capacity),
-		freeCapacityFromPort2(capacity) {
+		freeCapacityFromPort2(capacity),
+        length(length2) {
 	}
 
 	inline Port* getPort1() const {
@@ -37,6 +38,10 @@ public:
 	    if ( port2 == port )
             return port2->getParent();
 	}
+
+    inline float getLength() const {
+        return length;
+    }
 
 	inline long getMaxCapacity() const {
 		return maxCapacity;
@@ -123,6 +128,7 @@ private:
 	long maxCapacity;
 	long freeCapacityFromPort1;
 	long freeCapacityFromPort2;
+    float length;
 
 	VirtualLinks assignedFromPort1;
 	VirtualLinks assignedFromPort2;

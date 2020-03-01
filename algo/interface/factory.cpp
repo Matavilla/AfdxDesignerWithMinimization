@@ -95,12 +95,13 @@ NetElement* Factory::generateNetElement(const QDomElement& element) {
 Link* Factory::generateLink(const QDomElement& element) {
     Link* link = 0;
     QString capacityStr = element.attribute("capacity"),
+            lengthStr = element.attribute("length"),
             fromStr = element.attribute("from"),
             fromTypeStr = element.attribute("fromType"),
             toStr = element.attribute("to"),
             toTypeStr = element.attribute("toType");
 
-    if ( capacityStr.length() == 0 || fromStr.length() == 0 || toStr.length() == 0 ) {
+    if ( capacityStr.length() == 0 || fromStr.length() == 0 || toStr.length() == 0 || lengthStr.length() == 0) {
         printf("Wrong link tag format.\n");
         return 0;
     }
@@ -108,6 +109,8 @@ Link* Factory::generateLink(const QDomElement& element) {
     int capacity = capacityStr.toInt(),
         from = fromStr.toInt(),
         to = toStr.toInt();
+
+    float length = lengthStr.toFloat();
 
     if ( !capacity || !from || !to ) {
         printf("Wrong link tag format.\n");
@@ -121,7 +124,7 @@ Link* Factory::generateLink(const QDomElement& element) {
     Port* port1 = portsStorage[from];
     Port* port2 = portsStorage[to];
 
-    link = new Link(port1, port2, capacity);
+    link = new Link(port1, port2, capacity, length);
     port1->assosiatedLink = link;
     port2->assosiatedLink = link;
 

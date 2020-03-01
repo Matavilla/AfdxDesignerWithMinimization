@@ -138,10 +138,10 @@ int main(int argc, char** argv) {
             }
 
             if ( str[10] == 'd' ) {
-                Routing::setMode(Routing::DEJKSTRA_MAX_REMAINING_BW);
+                Routing::setMode(Routing::DEJKSTRA_HOPS);
                 printf("Using dejkstra algorithm\n");
             } else {
-                Routing::setMode(Routing::K_PATH);
+                Routing::setMode(Routing::DEJKSTRA_HOPS);
                 printf("Using k-path algorithm\n");
             }
         } else if ( std::string(argv[argc-1]).find("--iterations-on-redesign=") != std::string::npos ) {

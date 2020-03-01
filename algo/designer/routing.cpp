@@ -1,4 +1,7 @@
+#pragma once
+
 #include "routing.h"
+#include <iostream>
 
 #include "virtualLink.h"
 #include "operations.h"
@@ -297,7 +300,8 @@ bool notInPath(Network* network, Path* path, Link* linkToCheck) {
 
 Path* Routing::searchPathKShortes(Network * network, NetElement* source, NetElement* dest,
                 long capacity, Route* existingRoute) {
-    // Yen's algorithm
+    // Yen's algorithm 
+    std::cout<<"WTF!!!!!2"<<std::endl;
     Path* path = searchPathDejkstra(network, source, dest, capacity, existingRoute);
     if ( path == 0 ) {
         return 0;
@@ -385,10 +389,12 @@ Path* Routing::searchPathKShortes(Network * network, NetElement* source, NetElem
 }
 
 static float countWeightHops(Link* link, Port* fromPort, long capacity) {
-    return 1.0;
+    std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << link->getLength() << std::endl;
+    return link->getLength();
 }
 
 static float countWeightMaxRemainingBw(Link* link, Port* fromPort, long capacity) {
+    std::cout<<"WTF!!!!!"<<std::endl;
     return ((float)(link->getMaxCapacity() - link->getFreeCapacityFromPort(fromPort) + capacity))
             / link->getMaxCapacity();
 }
@@ -407,6 +413,6 @@ void Routing::setMode(MODE mode) {
 
 
 
-float (*Routing::countWeight)(Link* link, Port* fromPort, long capacity) = countWeightMaxRemainingBw;
-Routing::MODE Routing::algorithmMode = Routing::K_PATH;
+float (*Routing::countWeight)(Link* link, Port* fromPort, long capacity) = countWeightHops;
+Routing::MODE Routing::algorithmMode = Routing::DEJKSTRA_HOPS;
 unsigned int Routing::kPathsDepth = 5;
