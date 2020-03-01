@@ -26,11 +26,11 @@ except AttributeError:
 class Ui_LinkDialog(object):
     def setupUi(self, LinkDialog):
         LinkDialog.setObjectName(_fromUtf8("LinkDialog"))
-        LinkDialog.resize(256, 270)
-        LinkDialog.setMinimumSize(QtCore.QSize(256, 270))
-        LinkDialog.setMaximumSize(QtCore.QSize(256, 270))
+        LinkDialog.resize(290, 300)
+        LinkDialog.setMinimumSize(QtCore.QSize(290, 300))
+        LinkDialog.setMaximumSize(QtCore.QSize(290, 300))
         self.layoutWidget = QtGui.QWidget(LinkDialog)
-        self.layoutWidget.setGeometry(QtCore.QRect(0, 12, 251, 251))
+        self.layoutWidget.setGeometry(QtCore.QRect(0, 12, 280, 280))
         self.layoutWidget.setObjectName(_fromUtf8("layoutWidget"))
         self.verticalLayout = QtGui.QVBoxLayout(self.layoutWidget)
         self.verticalLayout.setSizeConstraint(QtGui.QLayout.SetNoConstraint)
