@@ -4,8 +4,9 @@ Makefile
 *.cmake
 *.txt
 *.a
-*.cxx_parameters
+*.cxx*
 
 /tmp
 /algo/*/CMakeFiles
 /algo/CMakeFiles
+/algo/AFDX_DESIGN
