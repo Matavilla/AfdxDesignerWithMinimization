@@ -1,3 +1,5 @@
+#pragma once
+
 #include "xmlreader.h"
 #include "network.h"
 #include "verifier.h"
@@ -187,6 +189,10 @@ int main(int argc, char** argv) {
                 disableAggrOnSource, disableAggrOnRespTime,
                 disableLimitedSearch, disableRedesign, limitedSearchDepth);
         designer.design();
+        
+        for (auto i = UseLinks.begin(); i != UseLinks.end(); i++) {
+            std::cout << (*i)->getLength() << std::endl;
+        }
 
         VirtualLinks newVls = designer.getDesignedVirtualLinks();
         printf("Generated %d virtualLinks.\n", newVls.size());

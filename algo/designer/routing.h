@@ -3,7 +3,9 @@
 
 #include "defs.h"
 #include "path.h"
+#include "link.h"
 
+extern Links UseLinks;
 /*
  * Module with routing algorithms to find routes between source and destination(s).
  */

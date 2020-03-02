@@ -5,9 +5,10 @@
 
 #include "virtualLink.h"
 #include "operations.h"
-#include "link.h"
 #include "network.h"
 #include <map>
+
+Links UseLinks;
 
 bool Routing::findRoute(Network* network, VirtualLink* vl) {
     // TODO: find route consists of several paths
@@ -174,6 +175,7 @@ Path* retrievePath(Context& context) {
         reverted.push_back(currentElement);
         assert(context.elements.find(currentElement) != context.elements.end());
         Link* link = context.elements[currentElement].bestIncomingLink;
+        UseLinks.insert(link);
         Port* port = link->getPortByParent(currentElement);
         currentElement = getNeighbour(port, link);
     }
