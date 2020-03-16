@@ -4,6 +4,7 @@
 #include "defs.h"
 #include "virtualLink.h"
 #include "netelement.h"
+#include "routing.h"
 
 class Link {
 public:
@@ -94,6 +95,7 @@ public:
 
 	inline void removeVirtualLink(VirtualLink* virtualLink) {
 	    Port* port = 0;
+        UseLinks.erase(this);
 	    if ( assignedFromPort1.find(virtualLink) != assignedFromPort1.end() ) {
 	        assignedFromPort1.erase(virtualLink);
 	        freeCapacityFromPort1 += virtualLink->getBandwidth();

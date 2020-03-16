@@ -8,7 +8,7 @@
 #include "network.h"
 #include <map>
 
-Links UseLinks;
+n_Links UseLinks;
 
 bool Routing::findRoute(Network* network, VirtualLink* vl) {
     // TODO: find route consists of several paths
@@ -392,7 +392,7 @@ Path* Routing::searchPathKShortes(Network * network, NetElement* source, NetElem
 
 static float countWeightHops(Link* link, Port* fromPort, long capacity) {
     std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << link->getLength() << std::endl;
-    return link->getLength();
+    return link->getLength() / UseLinks.count(link);
 }
 
 static float countWeightMaxRemainingBw(Link* link, Port* fromPort, long capacity) {
