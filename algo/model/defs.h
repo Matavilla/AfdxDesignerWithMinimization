@@ -24,12 +24,10 @@ typedef std::set<Port*> Ports;
 typedef std::set<Partition*> Partitions;
 typedef std::set<NetElement*> NetElements;
 typedef std::set<Link*> Links;
-typedef std::multiset<Link*> n_Links;
 typedef std::map<NetElement*, Path*> Paths;
 typedef std::set<VirtualLink*> VirtualLinks;
 typedef std::set<DataFlow*> DataFlows;
 
 typedef std::map<Port*, VirtualLinks> AssignedVirtualLinks;
 
-extern n_Links UseLinks;
 #endif

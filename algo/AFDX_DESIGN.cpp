@@ -140,10 +140,10 @@ int main(int argc, char** argv) {
             }
 
             if ( str[10] == 'd' ) {
-                Routing::setMode(Routing::DEJKSTRA_HOPS);
+                Routing::setMode(Routing::K_PATH);
                 printf("Using dejkstra algorithm\n");
             } else {
-                Routing::setMode(Routing::DEJKSTRA_HOPS);
+                Routing::setMode(Routing::K_PATH);
                 printf("Using k-path algorithm\n");
             }
         } else if ( std::string(argv[argc-1]).find("--iterations-on-redesign=") != std::string::npos ) {
@@ -190,10 +190,6 @@ int main(int argc, char** argv) {
                 disableLimitedSearch, disableRedesign, limitedSearchDepth);
         designer.design();
         
-        for (auto i = UseLinks.begin(); i != UseLinks.end(); i++) {
-            std::cout << (*i)->getLength() << std::endl;
-        }
-
         VirtualLinks newVls = designer.getDesignedVirtualLinks();
         printf("Generated %d virtualLinks.\n", newVls.size());
 

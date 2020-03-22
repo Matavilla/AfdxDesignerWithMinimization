@@ -8,7 +8,6 @@
 #include "network.h"
 #include <map>
 
-n_Links UseLinks;
 
 bool Routing::findRoute(Network* network, VirtualLink* vl) {
     // TODO: find route consists of several paths
@@ -175,7 +174,6 @@ Path* retrievePath(Context& context) {
         reverted.push_back(currentElement);
         assert(context.elements.find(currentElement) != context.elements.end());
         Link* link = context.elements[currentElement].bestIncomingLink;
-        UseLinks.insert(link);
         Port* port = link->getPortByParent(currentElement);
         currentElement = getNeighbour(port, link);
     }
@@ -239,7 +237,7 @@ float estimateWeight(Network* network, Path* path) {
 
         assert(prevElement->getPorts().find(fromPort) != prevElement->getPorts().end());
 
-        weight += (float) link->getFreeCapacityFromPort(fromPort) / (float)link->getMaxCapacity();
+        weight += (link->getLength() / (link->getCountLinks() + 1));
     }
     return weight;
 }
@@ -303,7 +301,6 @@ bool notInPath(Network* network, Path* path, Link* linkToCheck) {
 Path* Routing::searchPathKShortes(Network * network, NetElement* source, NetElement* dest,
                 long capacity, Route* existingRoute) {
     // Yen's algorithm 
-    std::cout<<"WTF!!!!!2"<<std::endl;
     Path* path = searchPathDejkstra(network, source, dest, capacity, existingRoute);
     if ( path == 0 ) {
         return 0;
@@ -311,7 +308,7 @@ Path* Routing::searchPathKShortes(Network * network, NetElement* source, NetElem
 
     unsigned int pathsFound = 1;
     Path* currentPath = path, *bestPath = path;
-    float bestPathWeight = estimateDuration(network, path, capacity);
+    float bestPathWeight = 0.6 * estimateWeight(network, path) + 0.4 * estimateDuration(network, path, capacity);
     bool isNewPathFound = false;
     Links removedLinks; // to restore them
 
@@ -345,6 +342,7 @@ Path* Routing::searchPathKShortes(Network * network, NetElement* source, NetElem
                 continue;
 
             float weight = estimateWeight(network, path);
+            std::cout << minWeight << ' ' << weight << std::endl;
             if ( shortest == 0 || minWeight > weight ) {
                 delete shortest;
                 shortest = path;
@@ -374,32 +372,32 @@ Path* Routing::searchPathKShortes(Network * network, NetElement* source, NetElem
 
         currentPath = shortest;
         // Compare the current shortest path with the current best paths
-        float weight = estimateDuration(network, shortest, capacity);
+        float weight = 0.4 * estimateDuration(network, shortest, capacity) + 0.6 * estimateWeight(network, shortest);
         if ( weight < bestPathWeight ) {
             delete bestPath;
             bestPath = shortest;
             bestPathWeight = weight;
         }
+    std::cout <<"@@@@@@@@@@@" << bestPathWeight << ' ' << weight << std::endl;
     }
 
     // Restoring the network and returning the best found path
     for ( Links::iterator it = removedLinks.begin(); it != removedLinks.end(); ++it ) {
         network->getLinks().insert(*it);
     }
-
     return bestPath;
 }
 
 static float countWeightHops(Link* link, Port* fromPort, long capacity) {
-    std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << link->getLength() << std::endl;
-    return link->getLength() / UseLinks.count(link);
+    std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << link->getLength() << ' ' << link->getCountLinks() << std::endl;
+    return link->getLength() / (link->getCountLinks() + 1);
 }
 
-static float countWeightMaxRemainingBw(Link* link, Port* fromPort, long capacity) {
-    std::cout<<"WTF!!!!!"<<std::endl;
-    return ((float)(link->getMaxCapacity() - link->getFreeCapacityFromPort(fromPort) + capacity))
-            / link->getMaxCapacity();
-}
+//static float countWeightMaxRemainingBw(Link* link, Port* fromPort, long capacity) {
+  //  std::cout<<"WTF!!!!!"<<std::endl;
+    //return ((float)(link->getMaxCapacity() - link->getFreeCapacityFromPort(fromPort) + capacity))
+ //           / link->getMaxCapacity();
+//}
 
 void Routing::setMode(MODE mode) {
     algorithmMode = mode;
@@ -407,7 +405,7 @@ void Routing::setMode(MODE mode) {
     case Routing::DEJKSTRA_HOPS:
         countWeight = countWeightHops;
     default:
-        countWeight = countWeightMaxRemainingBw;
+        countWeight = countWeightHops;
         break;
     }
 }
@@ -416,5 +414,5 @@ void Routing::setMode(MODE mode) {
 
 
 float (*Routing::countWeight)(Link* link, Port* fromPort, long capacity) = countWeightHops;
-Routing::MODE Routing::algorithmMode = Routing::DEJKSTRA_HOPS;
+Routing::MODE Routing::algorithmMode = Routing::K_PATH;
 unsigned int Routing::kPathsDepth = 5;

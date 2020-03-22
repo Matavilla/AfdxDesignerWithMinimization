@@ -14,7 +14,8 @@ public:
 		maxCapacity(capacity),
 		freeCapacityFromPort1(capacity),
 		freeCapacityFromPort2(capacity),
-        length(length2) {
+        length(length2),
+        countLinks(0) {
 	}
 
 	inline Port* getPort1() const {
@@ -39,6 +40,10 @@ public:
 	    if ( port2 == port )
             return port2->getParent();
 	}
+
+    inline long getCountLinks() const {
+        return countLinks;
+    }
 
     inline float getLength() const {
         return length;
@@ -88,14 +93,14 @@ public:
 	        freeCapacityFromPort2 -= virtualLink->getBandwidth();
 	        assignedFromPort2.insert(virtualLink);
 	    }
-
 	    fromPort->getParent()->assignOutgoingVirtualLink(virtualLink, fromPort, highPriority);
+        countLinks += 1;
 	    return true;
 	}
 
 	inline void removeVirtualLink(VirtualLink* virtualLink) {
 	    Port* port = 0;
-        UseLinks.erase(this);
+        countLinks -= 1;
 	    if ( assignedFromPort1.find(virtualLink) != assignedFromPort1.end() ) {
 	        assignedFromPort1.erase(virtualLink);
 	        freeCapacityFromPort1 += virtualLink->getBandwidth();
@@ -131,6 +136,7 @@ private:
 	long freeCapacityFromPort1;
 	long freeCapacityFromPort2;
     float length;
+    long countLinks;
 
 	VirtualLinks assignedFromPort1;
 	VirtualLinks assignedFromPort2;
