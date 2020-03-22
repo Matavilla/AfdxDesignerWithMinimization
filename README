@@ -8,3 +8,5 @@ This repo includes the following components:
 
 To Run GUI use python2.
 You can also use this algorithm without GUI.
+
+Algo doesn't remove unused links. You can do it with your hands.
