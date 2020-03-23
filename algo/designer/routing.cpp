@@ -1,13 +1,12 @@
-#pragma once
-
 #include "routing.h"
-#include <iostream>
 
 #include "virtualLink.h"
 #include "operations.h"
 #include "network.h"
-#include <map>
 
+
+float c1 = 0.5;
+float c2 = 0.5;
 
 bool Routing::findRoute(Network* network, VirtualLink* vl) {
     // TODO: find route consists of several paths
@@ -342,7 +341,6 @@ Path* Routing::searchPathKShortes(Network * network, NetElement* source, NetElem
                 continue;
 
             float weight = estimateWeight(network, path);
-            std::cout << minWeight << ' ' << weight << std::endl;
             if ( shortest == 0 || minWeight > weight ) {
                 delete shortest;
                 shortest = path;
@@ -372,13 +370,12 @@ Path* Routing::searchPathKShortes(Network * network, NetElement* source, NetElem
 
         currentPath = shortest;
         // Compare the current shortest path with the current best paths
-        float weight = 0.4 * estimateDuration(network, shortest, capacity) + 0.6 * estimateWeight(network, shortest);
+        float weight = c2 * estimateDuration(network, shortest, capacity) + c1 * estimateWeight(network, shortest);
         if ( weight < bestPathWeight ) {
             delete bestPath;
             bestPath = shortest;
             bestPathWeight = weight;
         }
-    std::cout <<"@@@@@@@@@@@" << bestPathWeight << ' ' << weight << std::endl;
     }
 
     // Restoring the network and returning the best found path
@@ -389,7 +386,6 @@ Path* Routing::searchPathKShortes(Network * network, NetElement* source, NetElem
 }
 
 static float countWeightHops(Link* link, Port* fromPort, long capacity) {
-    std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << link->getLength() << ' ' << link->getCountLinks() << std::endl;
     return link->getLength() / (link->getCountLinks() + 1);
 }
 

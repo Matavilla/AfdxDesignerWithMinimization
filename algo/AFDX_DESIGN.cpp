@@ -1,5 +1,3 @@
-#pragma once
-
 #include "xmlreader.h"
 #include "network.h"
 #include "verifier.h"
@@ -7,8 +5,11 @@
 #include "trajectoryApproachBasedEstimator.h"
 #include "designer.h"
 #include "routing.h"
+#include "defs.h"
 #include <string>
 #include <iostream>
+
+float SumLen = 0.0;
 
 void printUsage(char** argv) {
     printf("Usage: %s <input file> [<output file>] v|a|r [--limit-jitter=t|f]", *argv);
@@ -18,6 +19,8 @@ void printUsage(char** argv) {
     printf(" [--disable-redesign]\n");
     printf(" [--routing=d|k]\n");
     printf(" [--iterations-on-redesign=n]\n");
+    printf(" [--coefficent-c1=n]\n");
+    printf(" [--coefficiet-c2=n]\n");
     printf("\tv: verify and exit\n");
     printf("\ta: run designer\n");
     printf("\tr: estimate end-to-end response times\n");
@@ -120,6 +123,22 @@ int main(int argc, char** argv) {
             }
             limitedSearchDepth = num;
             printf("Limited Search Depth = %d\n", limitedSearchDepth);
+        } else if (std::string(argv[argc-1]).find("--coefficient-c1=") != std::string::npos) {
+            std::string str = std::string(argv[argc-1]).substr(17);
+            float num = atof(str.c_str());
+            if ( num < 0 ) {
+                printUsage(argv);
+                return 1;
+            }
+            c1 = num;
+        } else if (std::string(argv[argc-1]).find("--coefficient-c2=") != std::string::npos) {
+            std::string str = std::string(argv[argc-1]).substr(17);
+            float num = atof(str.c_str());
+            if ( num < 0 ) {
+                printUsage(argv);
+                return 1;
+            }
+            c2 = num;
         } else if ( std::string(argv[argc-1]) == "--disable-aggr-on-source" ) {
             disableAggrOnSource = true;
             printf("Disabling aggregation on source\n");
@@ -192,6 +211,8 @@ int main(int argc, char** argv) {
         
         VirtualLinks newVls = designer.getDesignedVirtualLinks();
         printf("Generated %d virtualLinks.\n", newVls.size());
+        
+        printf("Sum length link: %f\n", SumLen);
 
         xmlReader.saveDesignedVirtualLinks(designer.getDesignedVirtualLinks());
         QFile output(argv[argc - 2]);

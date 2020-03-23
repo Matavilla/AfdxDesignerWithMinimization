@@ -30,4 +30,5 @@ typedef std::set<DataFlow*> DataFlows;
 
 typedef std::map<Port*, VirtualLinks> AssignedVirtualLinks;
 
+extern float SumLen;
 #endif

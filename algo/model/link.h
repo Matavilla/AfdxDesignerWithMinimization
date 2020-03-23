@@ -94,6 +94,9 @@ public:
 	        assignedFromPort2.insert(virtualLink);
 	    }
 	    fromPort->getParent()->assignOutgoingVirtualLink(virtualLink, fromPort, highPriority);
+        if (!countLinks) {
+            SumLen += length;
+        }
         countLinks += 1;
 	    return true;
 	}
@@ -101,6 +104,9 @@ public:
 	inline void removeVirtualLink(VirtualLink* virtualLink) {
 	    Port* port = 0;
         countLinks -= 1;
+        if (!countLinks) {
+            SumLen -= length;
+        }
 	    if ( assignedFromPort1.find(virtualLink) != assignedFromPort1.end() ) {
 	        assignedFromPort1.erase(virtualLink);
 	        freeCapacityFromPort1 += virtualLink->getBandwidth();
