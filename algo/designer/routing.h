@@ -42,4 +42,6 @@ public:
     static unsigned int kPathsDepth;
 };
 
+extern float c1;
+extern float c2;
 #endif
