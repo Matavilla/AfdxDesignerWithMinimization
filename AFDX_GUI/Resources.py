@@ -429,8 +429,8 @@ class Network:
             root.appendChild(tag)
         for link in self.links:
             tag = dom.createElement("link")
-            tag.setAttribute("capacity", str(link.capacity))
             tag.setAttribute("length", str(link.length))
+            tag.setAttribute("capacity", str(link.capacity))
             tag.setAttribute("from", str(link.port1.number))
             tag.setAttribute("fromType", str(link.port1.type))
             tag.setAttribute("to", str(link.port2.number))
