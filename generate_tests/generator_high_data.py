@@ -114,7 +114,7 @@ def generate_and_run():
             name = "../algo/AFDX_DESIGN"
 
         for config in configs.keys():
-            process = subprocess.Popen('time ' + name + ' ' + fileName + ' out.afdxxml ' + " a " + configs[config],  stdout=subprocess.PIPE,  stderr=subprocess.PIPE, shell=True)
+            process = subprocess.Popen(name + ' ' + fileName + ' out.afdxxml ' + " a " + configs[config],  stdout=subprocess.PIPE,  stderr=subprocess.PIPE, shell=True)
             print config + " for test " + str(i) + " done"
 
             num_of_assigned[config] += calc_num_of_assigned()
