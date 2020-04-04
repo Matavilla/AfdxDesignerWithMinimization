@@ -1,0 +1,44 @@
+c1 = 0.7 c2 = 0.3 for test 1 done
+../algo/AFDX_DESIGN tests_high_data_2/test_1.afdxxml tests_high_data_2/test_out1_0.afdxxml  a --coefficient-c1=0.7 --coefficient-c2=0.3
+c1 = 0.9 c2 = 0.1 for test 1 done
+../algo/AFDX_DESIGN tests_high_data_2/test_1.afdxxml tests_high_data_2/test_out1_1.afdxxml  a --coefficient-c1=0.9 --coefficient-c2=0.1
+c1 = 0.1 c2 = 0.9 for test 1 done
+../algo/AFDX_DESIGN tests_high_data_2/test_1.afdxxml tests_high_data_2/test_out1_2.afdxxml  a --coefficient-c1=0.1 --coefficient-c2=0.9
+c1 = 0.4 c2 = 0.6 for test 1 done
+../algo/AFDX_DESIGN tests_high_data_2/test_1.afdxxml tests_high_data_2/test_out1_3.afdxxml  a --coefficient-c1=0.4 --coefficient-c2=0.6
+lim_2 for test 1 done
+../algo/AFDX_DESIGN tests_high_data_2/test_1.afdxxml tests_high_data_2/test_out1_4.afdxxml  a --limited-search-depth=2
+lim_3 for test 1 done
+../algo/AFDX_DESIGN tests_high_data_2/test_1.afdxxml tests_high_data_2/test_out1_5.afdxxml  a --limited-search-depth=3
+c1 = 0.6 c2 = 0.4 for test 1 done
+../algo/AFDX_DESIGN tests_high_data_2/test_1.afdxxml tests_high_data_2/test_out1_6.afdxxml  a --coefficient-c1=0.6 --coefficient-c2=0.4
+lim_1 for test 1 done
+../algo/AFDX_DESIGN tests_high_data_2/test_1.afdxxml tests_high_data_2/test_out1_7.afdxxml  a --limited-search-depth=1
+c1 = 0.0 c2 = 1.0 for test 1 done
+../algo/AFDX_DESIGN tests_high_data_2/test_1.afdxxml tests_high_data_2/test_out1_8.afdxxml  a --coefficient-c1=0.0 --coefficient-c2=1.0
+c1 = 0.8 c2 = 0.2 for test 1 done
+../algo/AFDX_DESIGN tests_high_data_2/test_1.afdxxml tests_high_data_2/test_out1_9.afdxxml  a --coefficient-c1=0.8 --coefficient-c2=0.2
+c1 = 0.2 c2 = 0.8 for test 1 done
+../algo/AFDX_DESIGN tests_high_data_2/test_1.afdxxml tests_high_data_2/test_out1_10.afdxxml  a --coefficient-c1=0.2 --coefficient-c2=0.8
+c1 = 0.3 c2 = 0.7 for test 1 done
+../algo/AFDX_DESIGN tests_high_data_2/test_1.afdxxml tests_high_data_2/test_out1_11.afdxxml  a --coefficient-c1=0.3 --coefficient-c2=0.7
+c1 = 1.0 c2 = 0.0 for test 1 done
+../algo/AFDX_DESIGN tests_high_data_2/test_1.afdxxml tests_high_data_2/test_out1_12.afdxxml  a --coefficient-c1=1.0 --coefficient-c2=1.0
+c1 = 0.5 c2 = 0.5 for test 1 done
+../algo/AFDX_DESIGN tests_high_data_2/test_1.afdxxml tests_high_data_2/test_out1_13.afdxxml  a --coefficient-c1=0.5 --coefficient-c2=0.5
+1 done
+
+c1 = 0.7 c2 = 0.3	100	100	39	28.0
+c1 = 0.9 c2 = 0.1	100	100	39	28.0
+c1 = 0.1 c2 = 0.9	100	100	39	32.0
+c1 = 0.4 c2 = 0.6	100	100	39	30.0
+lim_2	100	100	39	30.0
+lim_3	100	100	39	30.0
+c1 = 0.6 c2 = 0.4	100	100	39	28.0
+lim_1	100	100	39	30.0
+c1 = 0.0 c2 = 1.0	100	100	39	36.0
+c1 = 0.8 c2 = 0.2	100	100	39	28.0
+c1 = 0.2 c2 = 0.8	100	100	39	32.0
+c1 = 0.3 c2 = 0.7	100	100	39	32.0
+c1 = 1.0 c2 = 0.0	100	100	39	28.0
+c1 = 0.5 c2 = 0.5	100	100	39	30.0

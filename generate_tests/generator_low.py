@@ -8,7 +8,7 @@ dir_name = "tests_low"
 number_of_tests = 100
 if len(sys.argv) == 2:
     number_of_tests = int(sys.argv[1])
-number_of_msgs = 2000
+number_of_msgs = 1000
 msgSizeMin = 0
 msgSizeMax = 1000
 periodMin = 1000
@@ -18,8 +18,8 @@ tMaxMax = 100000
 destNumMin = 1
 destNumMax = 3
 
-numberOfGroups = 8
-partGroups = [[9, 10], [11,12], [13,14,15], [16], [17,18], [19, 20], [21,22], [23,24]]
+numberOfGroups = 18
+partGroups = [[28, 29, 30], [31, 32, 33], [34], [35], [36, 37, 38], [39, 40, 41], [42], [43], [44, 45, 46], [47, 48, 49], [50, 51, 52], [53, 54, 55],[ 56, 57, 58], [59, 60, 61], [62, 63], [64, 65], [66, 67, 68], [69, 70, 71]]
 
 def generate_one_df(fromPartition, toPartitions, jMax, msgSize, period, tMax, id):
     dest = ""
@@ -72,63 +72,81 @@ def generateOneTest():
     return text
 
 num_of_requests = number_of_msgs
-num_of_assigned = {'lim_1': 0, 'lim_2': 0, 'lim_3': 0, 'without_source': 0, 'without_resp': 0, 'without_lim': 0, 'without_redesign': 0}
-num_of_vls = {'lim_1': 0, 'lim_2': 0, 'lim_3': 0, 'without_source': 0, 'without_resp': 0, 'without_lim': 0, 'without_redesign': 0}
-av_time = {'lim_1': 0, 'lim_2': 0, 'lim_3': 0, 'without_source': 0, 'without_resp': 0, 'without_lim': 0, 'without_redesign': 0}
 
-configs = {'lim_1': '--limited-search-depth=1', 'lim_2': '--limited-search-depth=2', 'lim_3': '--limited-search-depth=3', 'without_source': '--disable-aggr-on-source', 'without_resp': '--disable-aggr-on-resp-time', 'without_lim': '--disable-limited-search', 'without_redesign': '--disable-redesign'}
+num_of_assigned = {'lim_1': 0, 'lim_2': 0, 'lim_3': 0, 'c1 = 0.0 c2 = 1.0': 0, 'c1 = 0.1 c2 = 0.9': 0, 'c1 = 0.2 c2 = 0.8': 0, 'c1 = 0.3 c2 = 0.7': 0, 'c1 = 0.4 c2 = 0.6': 0, 'c1 = 0.5 c2 = 0.5': 0, 'c1 = 0.6 c2 = 0.4': 0, 'c1 = 0.7 c2 = 0.3': 0, 'c1 = 0.8 c2 = 0.2': 0, 'c1 = 0.9 c2 = 0.1': 0, 'c1 = 1.0 c2 = 0.0': 0}
 
-def calc_num_of_assigned():
-    process = subprocess.Popen(['grep', 'vl="None"', "out.afdxxml", "-c"], stdout=subprocess.PIPE)
+num_len = {'lim_1': 0.0, 'lim_2': 0.0, 'lim_3': 0.0, 'c1 = 0.0 c2 = 1.0': 0.0, 'c1 = 0.1 c2 = 0.9': 0.0, 'c1 = 0.2 c2 = 0.8': 0.0, 'c1 = 0.3 c2 = 0.7': 0.0, 'c1 = 0.4 c2 = 0.6': 0.0, 'c1 = 0.5 c2 = 0.5': 0.0, 'c1 = 0.6 c2 = 0.4': 0.0, 'c1 = 0.7 c2 = 0.3': 0.0, 'c1 = 0.8 c2 = 0.2': 0.0, 'c1 = 0.9 c2 = 0.1': 0.0, 'c1 = 1.0 c2 = 0.0': 0.0}
+
+num_of_vls = {'lim_1': 0, 'lim_2': 0, 'lim_3': 0, 'c1 = 0.0 c2 = 1.0': 0, 'c1 = 0.1 c2 = 0.9': 0, 'c1 = 0.2 c2 = 0.8': 0, 'c1 = 0.3 c2 = 0.7': 0, 'c1 = 0.4 c2 = 0.6': 0, 'c1 = 0.5 c2 = 0.5': 0, 'c1 = 0.6 c2 = 0.4': 0, 'c1 = 0.7 c2 = 0.3': 0, 'c1 = 0.8 c2 = 0.2': 0, 'c1 = 0.9 c2 = 0.1': 0, 'c1 = 1.0 c2 = 0.0': 0}
+
+configs = {'lim_1': '--limited-search-depth=1', 'lim_2': '--limited-search-depth=2', 'lim_3': '--limited-search-depth=3', 'c1 = 0.0 c2 = 1.0': '--coefficient-c1=0.0 --coefficient-c2=1.0', 'c1 = 0.1 c2 = 0.9': '--coefficient-c1=0.1 --coefficient-c2=0.9', 'c1 = 0.2 c2 = 0.8': '--coefficient-c1=0.2 --coefficient-c2=0.8', 'c1 = 0.3 c2 = 0.7': '--coefficient-c1=0.3 --coefficient-c2=0.7', 'c1 = 0.4 c2 = 0.6': '--coefficient-c1=0.4 --coefficient-c2=0.6', 'c1 = 0.5 c2 = 0.5': '--coefficient-c1=0.5 --coefficient-c2=0.5', 'c1 = 0.6 c2 = 0.4': '--coefficient-c1=0.6 --coefficient-c2=0.4', 'c1 = 0.7 c2 = 0.3': '--coefficient-c1=0.7 --coefficient-c2=0.3', 'c1 = 0.8 c2 = 0.2': '--coefficient-c1=0.8 --coefficient-c2=0.2', 'c1 = 0.9 c2 = 0.1': '--coefficient-c1=0.9 --coefficient-c2=0.1', 'c1 = 1.0 c2 = 0.0': '--coefficient-c1=1.0 --coefficient-c2=1.0'}
+
+def calc_num_of_assigned(name):
+    process = subprocess.Popen(['grep', 'vl="None"', name, "-c"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     output = int(process.communicate()[0])
     return num_of_requests - output
 
-def calc_num_of_vls():
-    process = subprocess.Popen(['grep', '<virtualLink ', "out.afdxxml", "-c"], stdout=subprocess.PIPE)
+def calc_num_of_vls(name):
+    process = subprocess.Popen(['grep', '<virtualLink ', name, "-c"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     output = int(process.communicate()[0])
-    print output
+    return output
+
+def calc_length(name):
+    process = subprocess.Popen(['grep', 'Sum length link: ', name, "-c"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    output = float(process.communicate()[0])
     return output
 
 def generate_and_run():
     if not os.path.exists(dir_name):
         os.makedirs(dir_name)
 
-    for i in range(1, number_of_tests+1):
-        fileName = dir_name + '/' + 'test_'+ str(i) +'.afdxxml'
-        f = open(fileName, 'w')
-        f.write(generateOneTest())
-        f.close()
+    for i in range(1, number_of_tests + 1):
+        flag = True;
+        while flag:
+            os.system("rm -rf tests_low/*")
+            fileName = dir_name + '/' + 'test_'+ str(i) +'.afdxxml'
+            f = open(fileName, 'w')
+            f.write(generateOneTest())
+            f.close()
 
-        if sys.platform.startswith("win"):
-            name = "../algo/AFDX_DESIGN.exe"
-        else:
-            name = "../algo/AFDX_DESIGN"
+            if sys.platform.startswith("win"):
+                name = "../algo/AFDX_DESIGN.exe"
+            else:
+                name = "../algo/AFDX_DESIGN"
 
+            flag = False
+            j = 0
+            for config in configs.keys():
+                if flag:
+                    break
+                process = subprocess.Popen(name + ' ' + fileName + ' ' +  dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml ' + " a " + configs[config], stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+                print config + " for test " + str(i) + " done"
+                print name + ' ' + fileName + ' ' +  dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml ' + " a " + configs[config]
+                process.communicate()
+
+                try:
+                    calc_num_of_assigned(dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml')
+                    calc_num_of_vls(dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml')
+                    calc_length(dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml')
+                except:
+                    print "ERROR"
+                    flag = True;
+                j += 1
+        j = 0
         for config in configs.keys():
-            process = subprocess.Popen('time ' + name + ' ' + fileName + ' out.afdxxml ' + " a " + configs[config],  stdout=subprocess.PIPE,  stderr=subprocess.PIPE, shell=True)
-            print config + " for test " + str(i) + " done"
-            output = process.communicate()
-            time = output[1].split()[3]
+            num_of_assigned[config] += calc_num_of_assigned(dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml')
+            num_of_vls[config] += calc_num_of_vls(dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml')
+            num_len[config] += calc_length(dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml')
+            j += 1
+        print str(i) + ' done'
 
-            try:
-                minutes = float(time.split('m')[0])
-                secs = float(time.split('m')[1][:-1])
-            except:
-                print "exception!"
-                print time
-                return;
-            time = minutes*60 + secs
-            av_time[config] += time
-
-            num_of_assigned[config] += calc_num_of_assigned()
-            num_of_vls[config] += calc_num_of_vls()
-
+    print 
     for config in configs.keys():
         ans = config
         ans += '\t' + str(num_of_requests)
         ans += '\t' + str(int(float(num_of_assigned[config]) / number_of_tests))
         ans += '\t' + str(int(float(num_of_vls[config]) / number_of_tests))
-        ans += '\t' + str(av_time[config]/number_of_tests)
+        ans += '\t' + str(num_len[config] / number_of_tests)
         print ans
 
 generate_and_run()

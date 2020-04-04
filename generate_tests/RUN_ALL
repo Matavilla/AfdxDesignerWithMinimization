@@ -1,0 +1,9 @@
+python2 generator_high_data.py 10
+python2 generator_high_time.py 10
+python2 generator_low.py 10
+python2 generator_high_data_2.py 10
+python2 generator_high_time_2.py 10
+python2 generator_low_2.py 10
+python2 generator_high_data_3.py 10
+python2 generator_high_time_3.py 10
+python2 generator_low_3.py 10

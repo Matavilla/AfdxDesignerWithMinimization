@@ -4,22 +4,22 @@ import random
 import os, subprocess
 import sys
 
-dir_name = "tests_high_time"
-number_of_tests = 1
+dir_name = "tests_high_data_3"
+number_of_tests = 100
 if len(sys.argv) == 2:
     number_of_tests = int(sys.argv[1])
-number_of_msgs = 100
-msgSizeMin = 0
-msgSizeMax = 1000
-periodMin = 10
-periodMax = 100
-tMaxMin = 1
-tMaxMax = 100
+number_of_msgs = 90
+msgSizeMin = 1000
+msgSizeMax = 1000000
+periodMin = 1000
+periodMax = 10000
+tMaxMin = 1000
+tMaxMax = 10000
 destNumMin = 1
 destNumMax = 1
 
-numberOfGroups = 18
-partGroups = [[28, 29, 30], [31, 32, 33], [34], [35], [36, 37, 38], [39, 40, 41], [42], [43], [44, 45, 46], [47, 48, 49], [50, 51, 52], [53, 54, 55],[ 56, 57, 58], [59, 60, 61], [62, 63], [64, 65], [66, 67, 68], [69, 70, 71]]
+numberOfGroups = 8
+partGroups = [[9, 10], [11,12], [13,14,15], [16], [17,18], [19, 20], [21,22], [23,24]]
 
 def generate_one_df(fromPartition, toPartitions, jMax, msgSize, period, tMax, id):
     dest = ""
@@ -61,7 +61,7 @@ def generate_random_df(id):
     return generate_one_df(sourceInfo['id'], dests, 0, msgSize, period, tMax, id)
 
 def generateOneTest():
-    f = open('test_arch.afdxxml', 'r')
+    f = open('test_arch_3.afdxxml', 'r')
     textArr = f.readlines()
     text = "".join(textArr[:-2])
     for id in range(1, number_of_msgs + 1):
@@ -103,7 +103,7 @@ def generate_and_run():
     for i in range(1, number_of_tests + 1):
         flag = True;
         while flag:
-            os.system("rm -rf tests_high_time/*")
+            os.system("rm -rf tests_high_data_3/*")
             fileName = dir_name + '/' + 'test_'+ str(i) +'.afdxxml'
             f = open(fileName, 'w')
             f.write(generateOneTest())
