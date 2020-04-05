@@ -75,11 +75,11 @@ public:
             return true;
     }
 
-	inline bool isAssignmentPossible(VirtualLink* virtualLink, Port* fromPort) {
+	bool isAssignmentPossible(VirtualLink* virtualLink, Port* fromPort) {
 	    return isAssignmentPossible(virtualLink->getBandwidth(), fromPort);
 	}
 
-	inline bool assignVirtualLinks(VirtualLink* virtualLink, Port* fromPort, bool highPriority = false) {
+	 bool assignVirtualLinks(VirtualLink* virtualLink, Port* fromPort, bool highPriority = false) {
 	    if ( isAssigned (virtualLink) )
 	        return true;
 
@@ -103,22 +103,27 @@ public:
 
 	inline void removeVirtualLink(VirtualLink* virtualLink) {
 	    Port* port = 0;
-        countLinks -= 1;
-        if (!countLinks) {
-            SumLen -= length;
-        }
+        bool flag = false;
 	    if ( assignedFromPort1.find(virtualLink) != assignedFromPort1.end() ) {
 	        assignedFromPort1.erase(virtualLink);
 	        freeCapacityFromPort1 += virtualLink->getBandwidth();
 	        port = port1;
+            flag = true;
 	    }
 
 	    if ( assignedFromPort2.find(virtualLink) != assignedFromPort2.end() ) {
             assignedFromPort2.erase(virtualLink);
             freeCapacityFromPort2 += virtualLink->getBandwidth();
             port = port2;
+            flag = true;
         }
 
+        if (flag) {
+            countLinks -= 1;
+            if (!countLinks) {
+                SumLen -= length;
+            }
+        }
 	    if ( port != 0 )
 	        port->getParent()->removeOutgoingVirtualLink(virtualLink, port);
 	}

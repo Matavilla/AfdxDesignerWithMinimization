@@ -8,7 +8,7 @@ dir_name = "tests_low"
 number_of_tests = 100
 if len(sys.argv) == 2:
     number_of_tests = int(sys.argv[1])
-number_of_msgs = 1000
+number_of_msgs = 2000
 msgSizeMin = 0
 msgSizeMax = 1000
 periodMin = 1000
@@ -102,45 +102,34 @@ def generate_and_run():
 
     for i in range(1, number_of_tests + 1):
         flag = True;
-        while flag:
-            os.system("rm -rf tests_low/*")
-            fileName = dir_name + '/' + 'test_'+ str(i) +'.afdxxml'
-            f = open(fileName, 'w')
-            f.write(generateOneTest())
-            f.close()
+        os.system("rm -rf tests_low/*")
+        fileName = dir_name + '/' + 'test_'+ str(i) +'.afdxxml'
+        f = open(fileName, 'w')
+        f.write(generateOneTest())
+        f.close()
 
-            if sys.platform.startswith("win"):
-                name = "../algo/AFDX_DESIGN.exe"
-            else:
-                name = "../algo/AFDX_DESIGN"
-
-            flag = False
-            j = 0
-            for config in configs.keys():
-                if flag:
-                    break
-                process = subprocess.Popen(name + ' ' + fileName + ' ' +  dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml ' + " a " + configs[config], stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
-                print config + " for test " + str(i) + " done"
-                print name + ' ' + fileName + ' ' +  dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml ' + " a " + configs[config]
-                process.communicate()
-
-                try:
-                    calc_num_of_assigned(dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml')
-                    calc_num_of_vls(dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml')
-                    calc_length(dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml')
-                except:
-                    print "ERROR"
-                    flag = True;
-                j += 1
+        if sys.platform.startswith("win"):
+            name = "../algo/AFDX_DESIGN.exe"
+        else:
+            name = "../algo/AFDX_DESIGN"
+        
         j = 0
         for config in configs.keys():
-            num_of_assigned[config] += calc_num_of_assigned(dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml')
-            num_of_vls[config] += calc_num_of_vls(dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml')
-            num_len[config] += calc_length(dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml')
-            j += 1
-        print str(i) + ' done'
+            process = subprocess.Popen(name + ' ' + fileName + ' ' +  dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml ' + " a " + configs[config], stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+            print config + " for test " + str(i) + " done"
+            print name + ' ' + fileName + ' ' +  dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml ' + " a " + configs[config]
+            process.communicate()
 
-    print 
+            try:
+                num_of_assigned[config] += calc_num_of_assigned(dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml')
+                num_of_vls[config] += calc_num_of_vls(dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml')
+                num_len[config] += calc_length(dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml')
+            except:
+                num_of_assigned[config] = -1
+                num_of_vls[config] = -1 
+                num_len[config] = -1
+                print "ERROR"
+            j += 1
     for config in configs.keys():
         ans = config
         ans += '\t' + str(num_of_requests)

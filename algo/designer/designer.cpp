@@ -252,6 +252,7 @@ void Designer::routeVirtualLinks() {
         printf("Capacity: %d\n", (*it)->getBandwidth());
         bool found = Routing::findRoute(network, *it);
         if ( found ) {
+    
             Operations::assignVirtualLink(network, *it);
             printf("Route assigned\n");
             assigned.insert(*it);

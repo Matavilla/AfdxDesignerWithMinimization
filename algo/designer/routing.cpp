@@ -4,9 +4,10 @@
 #include "operations.h"
 #include "network.h"
 
+#include <iostream>
 
-float c1 = 0.5;
-float c2 = 0.5;
+float c1 = 0;
+float c2 = 0;
 
 bool Routing::findRoute(Network* network, VirtualLink* vl) {
     // TODO: find route consists of several paths
@@ -230,13 +231,11 @@ float estimateWeight(Network* network, Path* path) {
         prevElement = nIt->first;
         assert(link != 0);
         Port* fromPort = link->getPort1();
-        if ( prevElement->getPorts().find(fromPort) == prevElement->getPorts().end() ) {
+        if (prevElement->getPorts().find(fromPort) == prevElement->getPorts().end()) {
             fromPort = link->getPort2();
         }
 
-        assert(prevElement->getPorts().find(fromPort) != prevElement->getPorts().end());
-
-        weight += (link->getLength() / (link->getCountLinks() + 1));
+        weight += link->getFreeCapacityFromPort(fromPort) / (float) link->getMaxCapacity();
     }
     return weight;
 }
@@ -307,7 +306,7 @@ Path* Routing::searchPathKShortes(Network * network, NetElement* source, NetElem
 
     unsigned int pathsFound = 1;
     Path* currentPath = path, *bestPath = path;
-    float bestPathWeight = 0.6 * estimateWeight(network, path) + 0.4 * estimateDuration(network, path, capacity);
+    float bestPathWeight = estimateWeight(network, path);
     bool isNewPathFound = false;
     Links removedLinks; // to restore them
 
@@ -370,7 +369,7 @@ Path* Routing::searchPathKShortes(Network * network, NetElement* source, NetElem
 
         currentPath = shortest;
         // Compare the current shortest path with the current best paths
-        float weight = c2 * estimateDuration(network, shortest, capacity) + c1 * estimateWeight(network, shortest);
+        float weight = estimateWeight(network, shortest);
         if ( weight < bestPathWeight ) {
             delete bestPath;
             bestPath = shortest;

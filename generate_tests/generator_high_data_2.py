@@ -8,7 +8,7 @@ dir_name = "tests_high_data_2"
 number_of_tests = 100
 if len(sys.argv) == 2:
     number_of_tests = int(sys.argv[1])
-number_of_msgs = 100
+number_of_msgs = 500
 msgSizeMin = 100
 msgSizeMax = 50000
 periodMin = 1000
@@ -120,7 +120,7 @@ def generate_and_run():
                 process = subprocess.Popen(name + ' ' + fileName + ' ' +  dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml ' + " a " + configs[config], stdout=subprocess.PIPE,  stderr=subprocess.PIPE, shell=True)
                 print config + " for test " + str(i) + " done"
                 print name + ' ' + fileName + ' ' +  dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml ' + " a " + configs[config]
-                process.wait()
+                process.communicate()
 
                 try:
                     calc_num_of_assigned(dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml')
