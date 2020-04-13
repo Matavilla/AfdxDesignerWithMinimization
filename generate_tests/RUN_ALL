@@ -1,9 +1,18 @@
+echo "High_data_1"
 python2 generator_high_data.py 10
+echo "High_time_1"
 python2 generator_high_time.py 10
+echo "low_1"
 python2 generator_low.py 10
+echo "High_data_2"
 python2 generator_high_data_2.py 10
+echo "High_time_2"
 python2 generator_high_time_2.py 10
+echo "Low_2"
 python2 generator_low_2.py 10
+echo "High_data_3"
 python2 generator_high_data_3.py 10
+echo "High_time_3"
 python2 generator_high_time_3.py 10
+echo "Low_3"
 python2 generator_low_3.py 10

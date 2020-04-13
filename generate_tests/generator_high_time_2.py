@@ -8,7 +8,7 @@ dir_name = "tests_high_time_2"
 number_of_tests = 100
 if len(sys.argv) == 2:
     number_of_tests = int(sys.argv[1])
-number_of_msgs = 2000
+number_of_msgs = 100
 msgSizeMin = 0
 msgSizeMax = 100
 periodMin = 1
@@ -117,7 +117,7 @@ def generate_and_run():
             j = 0
             for config in configs.keys():
                 process = subprocess.Popen(name + ' ' + fileName + ' ' +  dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml ' + " a " + configs[config], stdout=subprocess.PIPE,  stderr=subprocess.PIPE, shell=True)
-                print config + " for test " + str(i) + " done"
+     #           print config + " for test " + str(i) + " done"
                 print name + ' ' + fileName + ' ' +  dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml ' + " a " + configs[config]
                 process.communicate()
 
@@ -134,9 +134,8 @@ def generate_and_run():
             num_of_vls[config] += calc_num_of_vls(dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml')
             num_len[config] += calc_length(dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml')
             j += 1
-        print str(i) + ' done'
+    #    print str(i) + ' done'
 
-    print 
     for config in configs.keys():
         ans = config
         ans += '\t' + str(num_of_requests)

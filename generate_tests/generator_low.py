@@ -16,7 +16,7 @@ periodMax = 1000000
 tMaxMin = 100
 tMaxMax = 100000
 destNumMin = 1
-destNumMax = 3
+destNumMax = 1
 
 numberOfGroups = 18
 partGroups = [[28, 29, 30], [31, 32, 33], [34], [35], [36, 37, 38], [39, 40, 41], [42], [43], [44, 45, 46], [47, 48, 49], [50, 51, 52], [53, 54, 55],[ 56, 57, 58], [59, 60, 61], [62, 63], [64, 65], [66, 67, 68], [69, 70, 71]]
@@ -116,7 +116,7 @@ def generate_and_run():
         j = 0
         for config in configs.keys():
             process = subprocess.Popen(name + ' ' + fileName + ' ' +  dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml ' + " a " + configs[config], stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
-            print config + " for test " + str(i) + " done"
+     #       print config + " for test " + str(i) + " done"
             print name + ' ' + fileName + ' ' +  dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml ' + " a " + configs[config]
             process.communicate()
 
@@ -128,7 +128,7 @@ def generate_and_run():
                 num_of_assigned[config] = -1
                 num_of_vls[config] = -1 
                 num_len[config] = -1
-                print "ERROR"
+       #         print "ERROR"
             j += 1
     for config in configs.keys():
         ans = config

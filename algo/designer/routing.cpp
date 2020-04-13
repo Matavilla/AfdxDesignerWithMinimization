@@ -235,7 +235,7 @@ float estimateWeight(Network* network, Path* path) {
             fromPort = link->getPort2();
         }
 
-        weight += link->getFreeCapacityFromPort(fromPort) / (float) link->getMaxCapacity();
+        weight += link->getLength() / (link->getCountLinks() + 1);
     }
     return weight;
 }
@@ -306,7 +306,8 @@ Path* Routing::searchPathKShortes(Network * network, NetElement* source, NetElem
 
     unsigned int pathsFound = 1;
     Path* currentPath = path, *bestPath = path;
-    float bestPathWeight = estimateWeight(network, path);
+    float bestPathWeight = c2 * estimateDuration(network, path, capacity);
+    bestPathWeight += c1 * estimateWeight(network, path);
     bool isNewPathFound = false;
     Links removedLinks; // to restore them
 
@@ -339,7 +340,8 @@ Path* Routing::searchPathKShortes(Network * network, NetElement* source, NetElem
             if ( path == 0 )
                 continue;
 
-            float weight = estimateWeight(network, path);
+            float weight = c1 * estimateWeight(network, path);
+            weight += c2 * estimateDuration(network, path, capacity);
             if ( shortest == 0 || minWeight > weight ) {
                 delete shortest;
                 shortest = path;
@@ -369,7 +371,8 @@ Path* Routing::searchPathKShortes(Network * network, NetElement* source, NetElem
 
         currentPath = shortest;
         // Compare the current shortest path with the current best paths
-        float weight = estimateWeight(network, shortest);
+        float weight = c2 * estimateDuration(network, shortest, capacity);
+        weight += c1 * estimateWeight(network, shortest);
         if ( weight < bestPathWeight ) {
             delete bestPath;
             bestPath = shortest;

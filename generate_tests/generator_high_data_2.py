@@ -118,8 +118,8 @@ def generate_and_run():
             j = 0
             for config in configs.keys():
                 process = subprocess.Popen(name + ' ' + fileName + ' ' +  dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml ' + " a " + configs[config], stdout=subprocess.PIPE,  stderr=subprocess.PIPE, shell=True)
-                print config + " for test " + str(i) + " done"
-                print name + ' ' + fileName + ' ' +  dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml ' + " a " + configs[config]
+#                print config + " for test " + str(i) + " done"
+ #               print name + ' ' + fileName + ' ' +  dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml ' + " a " + configs[config]
                 process.communicate()
 
                 try:
@@ -135,9 +135,9 @@ def generate_and_run():
             num_of_vls[config] += calc_num_of_vls(dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml')
             num_len[config] += calc_length(dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml')
             j += 1
-        print str(i) + ' done'
+  #      print str(i) + ' done'
 
-    print 
+   # print 
     for config in configs.keys():
         ans = config
         ans += '\t' + str(num_of_requests)
