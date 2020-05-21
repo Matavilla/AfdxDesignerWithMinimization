@@ -83,7 +83,7 @@ NetElement* Factory::generateNetElement(const QDomElement& element) {
 				return 0;
 			}
 
-			Port* port = new Port(netElement);
+			Port* port = new Port(netElement, id);
 			portsStorage[id] = port;
 			netElement->ports.insert(port);
 		}

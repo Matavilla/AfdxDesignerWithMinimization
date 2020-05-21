@@ -219,10 +219,29 @@ int main(int argc, char** argv) {
         output.open(QIODevice::WriteOnly | QIODevice::Text);
         QTextStream outStream(&output);
         outStream << document.toString(4);
-        for (int i = 0; i < SumLen; i++) {
-            outStream << "Sum length link: " << SumLen << '\n';
-        }
+       // for (int i = 0; i < SumLen; i++) {
+         //   outStream << "Sum length link: " << SumLen << '\n';
+        //}
         output.close();
+        
+        printf("Unused links\n");
+        for (auto v: network->getLinks()) {
+            if (!v->getCountLinks()) {
+                int id1 = v->getPort1()->id;
+                int id2 = v->getPort2()->id; 
+                int cap = v->getMaxCapacity();
+                printf("Link with ports: %d %d\n", id1, id2);
+                std::string tmp = "sed";
+                tmp += " '/from=\"" + std::to_string(id1) + "\" ";
+                tmp += "capacity=\"" + std::to_string(cap) + "\" ";
+                tmp += "to=\"" + std::to_string(id2) + "\"/d' ";
+                tmp += argv[1];
+                tmp += " | sudo tee ";
+                tmp += argv[1];
+                std::cout << tmp;
+                std::system(tmp.c_str());
+            }
+        }
     } else {
         printUsage(argv);
         return 1;

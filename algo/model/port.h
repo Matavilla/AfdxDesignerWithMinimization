@@ -8,13 +8,15 @@
 class Port {
     friend class Factory;
 public:
+    int id;
+
 	enum Type {
 		NONE,
 		FIFO,
 		PRIORITIZED
 	};
 
-	Port(NetElement* parent, Type type = NONE): parent(parent), assosiatedLink(0), type(type) {
+	Port(NetElement* parent, int i_d, Type type = NONE): parent(parent), assosiatedLink(0), type(type), id(i_d) {
 	}
 
 	inline Link* getAssosiatedLink() const {
