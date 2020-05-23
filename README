@@ -1,14 +1,10 @@
-AFDX designer project.
-This repo includes the following components:
-- AFDX GUI based on python qt
-- Verifier of network configuration
-- Response time analyzer based on Trajectory Approach (modified a bit to get faster calculations)
-- Algorithm of designing virtual links configurations by given data flows with all constraints satisfaction
+Запуск GUI осуществляется через python2 или по скрипту RUN_GUI.
 
+Возможен отдельный запуск алгоритма - см. algo/ (есть флаг --help).
 
-To Run GUI use python2.
-You can also use this algorithm without GUI.
+В папке generate_test лежат исходные топологии для тестирования и генераторы.
 
-Algo doesn't remove unused links. You can do it using your hands.
+Для удаления неиспользуемых линков раскомментировать AFDX_DESIGN.cpp:242.
+Для сбора результатов в тестах расскомментировать цикл AFDX_DESIGN.cpp:222.
 
-!!! Have undefined behavior witk "length" position in link. Be careful!
+!!! Have undefined behavior witk "length" position in link. Be careful! - при задании параметров соединений руками.
