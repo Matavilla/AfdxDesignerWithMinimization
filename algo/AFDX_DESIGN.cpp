@@ -238,8 +238,8 @@ int main(int argc, char** argv) {
                 tmp += argv[1];
                 tmp += " | sudo tee ";
                 tmp += argv[1];
-                std::cout << tmp;
-                std::system(tmp.c_str());
+                //std::cout << tmp;
+                //std::system(tmp.c_str());
             }
         }
     } else {
