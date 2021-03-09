@@ -8,7 +8,7 @@ dir_name = "test_3"
 number_of_tests = 1
 if len(sys.argv) == 2:
     number_of_tests = int(sys.argv[1])
-number_of_msgs = 150
+number_of_msgs = 200
 msgSizeMin = [1000, 16]
 msgSizeMax = [100000, 100]
 periodMin = [100, 10]
@@ -18,8 +18,8 @@ tMaxMax = [1000, 100]
 destNumMin = 1
 destNumMax = 1
 
-numberOfGroups = 4
-partGroups = [[5, 6], [7, 8], [1, 2], [3, 4]]
+numberOfGroups = 12
+partGroups = [[5, 6], [7, 8], [1, 2], [3, 4], [9, 10], [11, 12], [13, 14], [15, 16], [17, 18], [19, 20], [21, 22], [23, 24]]
 
 def generate_one_df(fromPartition, toPartitions, jMax, msgSize, period, tMax, id):
     dest = ""
@@ -75,9 +75,9 @@ def generateOneData():
 
 def generateOneTest(t, data):
     if (t == 1):
-        f = open('test_2_Base.afdxxml', 'r')
+        f = open('test_3_Base.afdxxml', 'r')
     else:
-        f = open('test_2_Full.afdxxml', 'r')
+        f = open('test_3_Full.afdxxml', 'r')
     textArr = f.readlines()
     text = "".join(textArr[:-2])
     text += data

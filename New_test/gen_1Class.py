@@ -8,7 +8,7 @@ dir_name = "test_1"
 number_of_tests = 1
 if len(sys.argv) == 2:
     number_of_tests = int(sys.argv[1])
-number_of_msgs = 250
+number_of_msgs = 300
 msgSizeMin = 16
 msgSizeMax = 1000
 periodMin = 10
@@ -18,8 +18,8 @@ tMaxMax = 100
 destNumMin = 1
 destNumMax = 1
 
-numberOfGroups = 4
-partGroups = [[5, 6], [7, 8], [1, 2], [3, 4]]
+numberOfGroups = 12
+partGroups = [[5, 6], [7, 8], [1, 2], [3, 4], [9, 10], [11, 12], [13, 14], [15, 16], [17, 18], [19, 20], [21, 22], [23, 24]]
 
 def generate_one_df(fromPartition, toPartitions, jMax, msgSize, period, tMax, id):
     dest = ""
@@ -73,9 +73,9 @@ def generateOneData():
 
 def generateOneTest(t, data):
     if (t == 1):
-        f = open('test_2_Base.afdxxml', 'r')
+        f = open('test_3_Base.afdxxml', 'r')
     else:
-        f = open('test_2_Full.afdxxml', 'r')
+        f = open('test_3_Full.afdxxml', 'r')
     textArr = f.readlines()
     text = "".join(textArr[:-2])
     text += data
@@ -92,7 +92,7 @@ num_len = {'c1 = 0.5 c2 = 0.5': 0}
 
 num_of_vls = {'c1 = 0.5 c2 = 0.5': 0}
 
-configs = {'c1 = 0.5 c2 = 0.5': '--coefficient-c1=0.5 --coefficient-c2=0.5'}
+configs = {'c1 = 0.5 c2 = 0.5': '--coefficient-c1=0.1 --coefficient-c2=0.9'}
 
 def calc_num_of_assigned(name):
     process = subprocess.Popen(['grep', 'vl="None"', name, "-c"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
