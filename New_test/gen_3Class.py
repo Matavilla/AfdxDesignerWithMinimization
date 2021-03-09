@@ -4,17 +4,17 @@ import random
 import os, subprocess
 import sys
 
-dir_name = "test_2"
+dir_name = "test_3"
 number_of_tests = 1
 if len(sys.argv) == 2:
     number_of_tests = int(sys.argv[1])
-number_of_msgs = 100
-msgSizeMin = 1000
-msgSizeMax = 100000
-periodMin = 100
-periodMax = 10000
-tMaxMin = 10
-tMaxMax = 1000
+number_of_msgs = 150
+msgSizeMin = [1000, 16]
+msgSizeMax = [100000, 100]
+periodMin = [100, 10]
+periodMax = [10000, 100]
+tMaxMin = [10, 10]
+tMaxMax = [1000, 100]
 destNumMin = 1
 destNumMax = 1
 
@@ -52,14 +52,16 @@ def generateDests(sourceGroup, destNumber):
     return dests
 
 def generate_random_df(id):
-    msgSize = random.randint(msgSizeMin, msgSizeMax)
-    period = random.randint(periodMin, periodMax)
+    t = random.randint(0, 100);
+    t = t % 2
+    msgSize = random.randint(msgSizeMin[t], msgSizeMax[t])
+    period = random.randint(periodMin[t], periodMax[t])
     time = msgSize / 12500.0
     while (time / period > 0.05):
-        period = random.randint(periodMin, periodMax)
+        period = random.randint(periodMin[t], periodMax[t])
         time = msgSize / 12500.0
-    tmp = ((msgSize - msgSizeMin + 1.0) / msgSizeMax)
-    tMax = tMaxMin + int((tMaxMax - tMaxMin) * tmp)
+    tmp = ((msgSize - msgSizeMin[t] + 1.0) / msgSizeMax[t])
+    tMax = tMaxMin[t] + int((tMaxMax[t] - tMaxMin[t]) * tmp)
     destNumber = random.randint(destNumMin, destNumMax)
     sourceInfo = generateSource()
     dests = generateDests(sourceInfo['group'], destNumber)
@@ -113,7 +115,7 @@ def generate_and_run():
     if not os.path.exists(dir_name):
         os.makedirs(dir_name)
 
-    os.system("rm -rf test_2/*")
+    os.system("rm -rf test_3/*")
     for i in range(1, number_of_tests + 1):
         flag = True;
         while flag:

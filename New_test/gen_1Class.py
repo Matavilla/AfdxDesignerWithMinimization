@@ -19,7 +19,7 @@ destNumMin = 1
 destNumMax = 1
 
 numberOfGroups = 4
-partGroups = [[5, 6], [7, 8], [9, 10], [11, 12]]
+partGroups = [[5, 6], [7, 8], [1, 2], [3, 4]]
 
 def generate_one_df(fromPartition, toPartitions, jMax, msgSize, period, tMax, id):
     dest = ""
@@ -73,9 +73,9 @@ def generateOneData():
 
 def generateOneTest(t, data):
     if (t == 1):
-        f = open('test_1_Base.afdxxml', 'r')
+        f = open('test_2_Base.afdxxml', 'r')
     else:
-        f = open('test_1_Full.afdxxml', 'r')
+        f = open('test_2_Full.afdxxml', 'r')
     textArr = f.readlines()
     text = "".join(textArr[:-2])
     text += data
