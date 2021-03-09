@@ -22,5 +22,6 @@
 		<link capacity="12500" from="7" fromType="0" length="1" to="10" toType="0"/>
 	</resources>
 	<virtualLinks/>
-	<dataFlows/>
+	<dataFlows>
+	</dataFlows>
 </afdxxml>

@@ -219,9 +219,9 @@ int main(int argc, char** argv) {
         output.open(QIODevice::WriteOnly | QIODevice::Text);
         QTextStream outStream(&output);
         outStream << document.toString(4);
-        /* for (int i = 0; i < SumLen; i++) {
+         for (int i = 0; i < SumLen; i++) {
             outStream << "Sum length link: " << SumLen << '\n';
-        }*/
+        }
         output.close();
         
         printf("Unused links\n");
