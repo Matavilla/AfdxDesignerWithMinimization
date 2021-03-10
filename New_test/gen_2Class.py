@@ -8,7 +8,7 @@ dir_name = "test_2"
 number_of_tests = 1
 if len(sys.argv) == 2:
     number_of_tests = int(sys.argv[1])
-number_of_msgs = 150
+number_of_msgs = 100
 msgSizeMin = 1000
 msgSizeMax = 100000
 periodMin = 100
@@ -18,8 +18,8 @@ tMaxMax = 1000
 destNumMin = 1
 destNumMax = 1
 
-numberOfGroups = 12
-partGroups = [[5, 6], [7, 8], [1, 2], [3, 4], [9, 10], [11, 12], [13, 14], [15, 16], [17, 18], [19, 20], [21, 22], [23, 24]]
+numberOfGroups = 4
+partGroups = [[5, 6], [7, 8], [9, 10], [11, 12]]
 
 def generate_one_df(fromPartition, toPartitions, jMax, msgSize, period, tMax, id):
     dest = ""
@@ -73,9 +73,9 @@ def generateOneData():
 
 def generateOneTest(t, data):
     if (t == 1):
-        f = open('test_3_Base.afdxxml', 'r')
+        f = open('test_1_Base.afdxxml', 'r')
     else:
-        f = open('test_3_Full.afdxxml', 'r')
+        f = open('test_1_Full.afdxxml', 'r')
     textArr = f.readlines()
     text = "".join(textArr[:-2])
     text += data
@@ -114,63 +114,45 @@ def generate_and_run():
         os.makedirs(dir_name)
 
     os.system("rm -rf test_2/*")
+    total = 0
     for i in range(1, number_of_tests + 1):
-        flag = True;
-        while flag:
-            data = generateOneData();
-            fileName = dir_name + '/' + 'test_'+ str(i) +'.afdxxml'
-            f = open(fileName, 'w')
-            f.write(generateOneTest(1, data))
-            f.close()
+        data = generateOneData();
 
-            fileNameForFull = dir_name + '/' + 'test_'+ str(i) + '_full' + '.afdxxml'
-            f = open(fileNameForFull, 'w')
-            f.write(generateOneTest(2, data))
-            f.close()
+        fileNameForFull = dir_name + '/' + 'test_'+ str(i) + '_full' + '.afdxxml'
+        f = open(fileNameForFull, 'w')
+        f.write(generateOneTest(2, data))
+        f.close()
 
-            if sys.platform.startswith("win"):
-                name = "../algo/AFDX_DESIGN.exe"
-            else:
-                name = "../algo/AFDX_DESIGN"
+        if sys.platform.startswith("win"):
+            name = "../algo/AFDX_DESIGN.exe"
+        else:
+            name = "../algo/AFDX_DESIGN"
 
-            flag = False
-            j = 0
-            for config in configs.keys():
-                process = subprocess.Popen(name + ' ' + fileName + ' ' +  dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml ' + " a " + configs[config], stdout=subprocess.PIPE,  stderr=subprocess.PIPE, shell=True)
-                process.wait()
-                t1 = calc_num_of_assigned(dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml')
-                t2 = calc_num_of_vls(dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml')
-                t3 = calc_length(dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml')
-                if t1 != number_of_msgs:
-                    flag = True
-                else:
-                    ans = config
-                    ans += '\t' + str(num_of_requests)
-                    ans += '\t' + str(t1)
-                    ans += '\t' + str(t2)
-                    ans += '\t' + str(t3)
-                    print ans
-                    t1, t2, t3 = 0, 0, 0
-                    process = subprocess.Popen(name + ' ' + fileNameForFull + ' ' +  dir_name + '/test_out' + str(i) + '_' + str(j) + '_full' + '.afdxxml ' + " a " + configs[config], stdout=subprocess.PIPE,  stderr=subprocess.PIPE, shell=True)
-# print name + ' ' + fileNameForFull + ' ' +  dir_name + '/test_out' + str(i) + '_' + str(j) + '_full' + '.afdxxml ' + " a " + configs[config]
-                    process.wait()
-                    t1 = calc_num_of_assigned(dir_name + '/test_out' + str(i) + '_' + str(j) + '_full' + '.afdxxml')
-                    t2 = calc_num_of_vls(dir_name + '/test_out' + str(i) + '_' + str(j) + '_full' + '.afdxxml')
-                    t3 = calc_length(dir_name + '/test_out' + str(i) + '_' + str(j) + '_full' +  '.afdxxml')
-                    ans = config
-                    ans += '\t' + str(num_of_requests)
-                    ans += '\t' + str(t1)
-                    ans += '\t' + str(t2)
-                    ans += '\t' + str(t3)
-                    print ans
-                j += 1
+        flag = False
+        j = 0
+        for config in configs.keys():
+            process = subprocess.Popen(name + ' ' + fileNameForFull + ' ' +  dir_name + '/test_out' + str(i) + '_' + str(j) + '_full' + '.afdxxml ' + " a " + configs[config], stdout=subprocess.PIPE,  stderr=subprocess.PIPE, shell=True)
+            process.wait()
+            t1 = calc_num_of_assigned(dir_name + '/test_out' + str(i) + '_' + str(j) + '_full' + '.afdxxml')
+            t2 = calc_num_of_vls(dir_name + '/test_out' + str(i) + '_' + str(j) + '_full' + '.afdxxml')
+            t3 = calc_length(dir_name + '/test_out' + str(i) + '_' + str(j) + '_full' +  '.afdxxml')
+            if t1 == number_of_msgs:
+                total += 1
+            ans = config
+            ans += '\t' + str(num_of_requests)
+            ans += '\t' + str(t1)
+            ans += '\t' + str(t2)
+            ans += '\t' + str(t3)
+            print ans
+            t1, t2, t3 = 0, 0, 0
+            j += 1
 
         j = 0
         for config in configs.keys():
-            num_of_assigned[config] += calc_num_of_assigned(dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml')
-            num_of_vls[config] += calc_num_of_vls(dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml')
-            num_len[config] += calc_length(dir_name + '/test_out' + str(i) + '_' + str(j) + '.afdxxml')
-            j += 1
+            num_of_assigned[config] += calc_num_of_assigned(dir_name + '/test_out' + str(i) + '_' + str(j) + '_full'+ '.afdxxml')
+            num_of_vls[config] += calc_num_of_vls(dir_name + '/test_out' + str(i) + '_' + str(j) + '_full' + '.afdxxml')
+            num_len[config] += calc_length(dir_name + '/test_out' + str(i) + '_' + str(j) + '_full' + '.afdxxml')
+            j += 1 
         print str(i) + ' done'
 
     for config in configs.keys():
@@ -180,5 +162,6 @@ def generate_and_run():
         ans += '\t' + str(int(float(num_of_vls[config]) / number_of_tests))
         ans += '\t' + str(num_len[config] / number_of_tests)
         print ans
+    print total
 
 generate_and_run()

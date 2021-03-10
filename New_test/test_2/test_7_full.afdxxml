@@ -1,0 +1,146 @@
+<?xml version="1.0" ?>
+<afdxxml name="test project">
+	<resources>
+		<endSystem name="endSystem1" number="1" ports="1" x="197.5" y="191.5"/>
+		<endSystem name="endSystem2" number="2" ports="2" x="205.5" y="420.5"/>
+		<endSystem name="endSystem3" number="3" ports="3" x="567.5" y="193.5"/>
+		<endSystem name="endSystem4" number="4" ports="4" x="563.5" y="407.5"/>
+		<partition connectedTo="1" name="partition1" number="5" x="133.5" y="139.5"/>
+		<partition connectedTo="1" name="partition2" number="6" x="125.5" y="217.5"/>
+		<partition connectedTo="2" name="partition3" number="7" x="140.5" y="367.5"/>
+		<partition connectedTo="2" name="partition4" number="8" x="140.5" y="437.5"/>
+		<partition connectedTo="3" name="partition5" number="9" x="637.5" y="155.5"/>
+		<partition connectedTo="3" name="partition6" number="10" x="637.5" y="220.5"/>
+		<partition connectedTo="4" name="partition7" number="11" x="643.5" y="357.5"/>
+		<partition connectedTo="4" name="partition8" number="12" x="635.5" y="453.5"/>
+		<switch name="switch2" number="13" ports="5,6,7,8,9" x="379.5" y="404.5"/>
+		<switch name="switch3" number="14" ports="10,11,12,13,14" x="490.5" y="296.5"/>
+		<switch name="switch4" number="15" ports="15,16,17,18,19" x="264.5" y="295.5"/>
+		<switch name="switch5" number="16" ports="20,21,22,23,24" x="386.5" y="189.5"/>
+		<switch name="switch6" number="17" ports="25,26,27" x="279.5" y="494.5"/>
+		<switch name="switch7" number="18" ports="28,29,30" x="522.5" y="501.5"/>
+		<switch name="switch8" number="19" ports="31,32,33" x="280.5" y="90.5"/>
+		<switch name="switch9" number="20" ports="34,35,36" x="469.5" y="138.5"/>
+		<link capacity="12500" from="15" fromType="0" length="2" to="10" toType="0"/>
+		<link capacity="12500" from="16" fromType="0" length="2" to="5" toType="0"/>
+		<link capacity="12500" from="6" fromType="0" length="2" to="11" toType="0"/>
+		<link capacity="12500" from="1" fromType="0" length="0" to="31" toType="0"/>
+		<link capacity="12500" from="2" fromType="0" length="0" to="25" toType="0"/>
+		<link capacity="12500" from="28" fromType="0" length="0" to="4" toType="0"/>
+		<link capacity="12500" from="3" fromType="0" length="0" to="34" toType="0"/>
+		<link capacity="12500" from="35" fromType="0" length="1" to="20" toType="0"/>
+		<link capacity="12500" from="32" fromType="0" length="1" to="21" toType="0"/>
+		<link capacity="12500" from="33" fromType="0" length="2" to="17" toType="0"/>
+		<link capacity="12500" from="36" fromType="0" length="2" to="12" toType="0"/>
+		<link capacity="12500" from="18" fromType="0" length="2" to="22" toType="0"/>
+		<link capacity="12500" from="23" fromType="0" length="2" to="13" toType="0"/>
+		<link capacity="12500" from="7" fromType="0" length="1" to="26" toType="0"/>
+		<link capacity="12500" from="27" fromType="0" length="2" to="19" toType="0"/>
+		<link capacity="12500" from="8" fromType="0" length="1" to="29" toType="0"/>
+		<link capacity="12500" from="30" fromType="0" length="2" to="14" toType="0"/>
+		<link capacity="12500" from="24" fromType="0" length="1" to="9" toType="0"/>
+	</resources>
+	<virtualLinks/>
+	<dataFlows>
+		<dataFlow dest="9" id="Data Flow 1" jMax="0" msgSize="3080" period="6066" source="11" tMax="30" vl="None"/>
+		<dataFlow dest="7" id="Data Flow 2" jMax="0" msgSize="40439" period="4929" source="11" tMax="400" vl="None"/>
+		<dataFlow dest="10" id="Data Flow 3" jMax="0" msgSize="57792" period="5874" source="5" tMax="572" vl="None"/>
+		<dataFlow dest="10" id="Data Flow 4" jMax="0" msgSize="28297" period="6125" source="7" tMax="280" vl="None"/>
+		<dataFlow dest="11" id="Data Flow 5" jMax="0" msgSize="20916" period="4574" source="6" tMax="207" vl="None"/>
+		<dataFlow dest="8" id="Data Flow 6" jMax="0" msgSize="29756" period="9296" source="6" tMax="294" vl="None"/>
+		<dataFlow dest="11" id="Data Flow 7" jMax="0" msgSize="43970" period="5335" source="8" tMax="435" vl="None"/>
+		<dataFlow dest="12" id="Data Flow 8" jMax="0" msgSize="63415" period="8906" source="5" tMax="627" vl="None"/>
+		<dataFlow dest="7" id="Data Flow 9" jMax="0" msgSize="69006" period="5395" source="10" tMax="683" vl="None"/>
+		<dataFlow dest="5" id="Data Flow 10" jMax="0" msgSize="1019" period="7869" source="12" tMax="10" vl="None"/>
+		<dataFlow dest="5" id="Data Flow 11" jMax="0" msgSize="7431" period="552" source="9" tMax="73" vl="None"/>
+		<dataFlow dest="10" id="Data Flow 12" jMax="0" msgSize="36008" period="7770" source="7" tMax="356" vl="None"/>
+		<dataFlow dest="9" id="Data Flow 13" jMax="0" msgSize="86792" period="9117" source="8" tMax="859" vl="None"/>
+		<dataFlow dest="7" id="Data Flow 14" jMax="0" msgSize="22903" period="1679" source="9" tMax="226" vl="None"/>
+		<dataFlow dest="7" id="Data Flow 15" jMax="0" msgSize="61109" period="2652" source="10" tMax="605" vl="None"/>
+		<dataFlow dest="7" id="Data Flow 16" jMax="0" msgSize="8978" period="1688" source="10" tMax="88" vl="None"/>
+		<dataFlow dest="8" id="Data Flow 17" jMax="0" msgSize="82759" period="7062" source="11" tMax="819" vl="None"/>
+		<dataFlow dest="10" id="Data Flow 18" jMax="0" msgSize="87518" period="5439" source="12" tMax="866" vl="None"/>
+		<dataFlow dest="12" id="Data Flow 19" jMax="0" msgSize="87280" period="5757" source="6" tMax="864" vl="None"/>
+		<dataFlow dest="6" id="Data Flow 20" jMax="0" msgSize="36719" period="5588" source="7" tMax="363" vl="None"/>
+		<dataFlow dest="10" id="Data Flow 21" jMax="0" msgSize="41356" period="2248" source="6" tMax="409" vl="None"/>
+		<dataFlow dest="7" id="Data Flow 22" jMax="0" msgSize="86983" period="5361" source="10" tMax="861" vl="None"/>
+		<dataFlow dest="12" id="Data Flow 23" jMax="0" msgSize="1322" period="6652" source="7" tMax="13" vl="None"/>
+		<dataFlow dest="9" id="Data Flow 24" jMax="0" msgSize="21618" period="131" source="12" tMax="214" vl="None"/>
+		<dataFlow dest="8" id="Data Flow 25" jMax="0" msgSize="92707" period="6042" source="11" tMax="917" vl="None"/>
+		<dataFlow dest="6" id="Data Flow 26" jMax="0" msgSize="23800" period="5354" source="10" tMax="235" vl="None"/>
+		<dataFlow dest="12" id="Data Flow 27" jMax="0" msgSize="55737" period="4778" source="10" tMax="551" vl="None"/>
+		<dataFlow dest="12" id="Data Flow 28" jMax="0" msgSize="34859" period="2079" source="7" tMax="345" vl="None"/>
+		<dataFlow dest="5" id="Data Flow 29" jMax="0" msgSize="75775" period="4157" source="11" tMax="750" vl="None"/>
+		<dataFlow dest="5" id="Data Flow 30" jMax="0" msgSize="11961" period="1414" source="8" tMax="118" vl="None"/>
+		<dataFlow dest="5" id="Data Flow 31" jMax="0" msgSize="88780" period="5811" source="7" tMax="879" vl="None"/>
+		<dataFlow dest="7" id="Data Flow 32" jMax="0" msgSize="86070" period="4772" source="5" tMax="852" vl="None"/>
+		<dataFlow dest="8" id="Data Flow 33" jMax="0" msgSize="73825" period="1946" source="6" tMax="730" vl="None"/>
+		<dataFlow dest="10" id="Data Flow 34" jMax="0" msgSize="46779" period="8487" source="5" tMax="463" vl="None"/>
+		<dataFlow dest="7" id="Data Flow 35" jMax="0" msgSize="2741" period="3601" source="5" tMax="27" vl="None"/>
+		<dataFlow dest="8" id="Data Flow 36" jMax="0" msgSize="1032" period="1631" source="6" tMax="10" vl="None"/>
+		<dataFlow dest="8" id="Data Flow 37" jMax="0" msgSize="79952" period="251" source="11" tMax="791" vl="None"/>
+		<dataFlow dest="12" id="Data Flow 38" jMax="0" msgSize="20168" period="792" source="7" tMax="199" vl="None"/>
+		<dataFlow dest="10" id="Data Flow 39" jMax="0" msgSize="67601" period="2916" source="7" tMax="669" vl="None"/>
+		<dataFlow dest="11" id="Data Flow 40" jMax="0" msgSize="43497" period="1469" source="8" tMax="430" vl="None"/>
+		<dataFlow dest="8" id="Data Flow 41" jMax="0" msgSize="92645" period="8579" source="9" tMax="917" vl="None"/>
+		<dataFlow dest="5" id="Data Flow 42" jMax="0" msgSize="97319" period="4771" source="10" tMax="963" vl="None"/>
+		<dataFlow dest="9" id="Data Flow 43" jMax="0" msgSize="60524" period="7650" source="5" tMax="599" vl="None"/>
+		<dataFlow dest="12" id="Data Flow 44" jMax="0" msgSize="9022" period="4007" source="5" tMax="89" vl="None"/>
+		<dataFlow dest="7" id="Data Flow 45" jMax="0" msgSize="66698" period="1245" source="5" tMax="660" vl="None"/>
+		<dataFlow dest="8" id="Data Flow 46" jMax="0" msgSize="4203" period="6257" source="6" tMax="41" vl="None"/>
+		<dataFlow dest="7" id="Data Flow 47" jMax="0" msgSize="71380" period="8425" source="11" tMax="706" vl="None"/>
+		<dataFlow dest="6" id="Data Flow 48" jMax="0" msgSize="77425" period="2814" source="11" tMax="766" vl="None"/>
+		<dataFlow dest="12" id="Data Flow 49" jMax="0" msgSize="82503" period="1516" source="7" tMax="816" vl="None"/>
+		<dataFlow dest="8" id="Data Flow 50" jMax="0" msgSize="38741" period="8595" source="12" tMax="383" vl="None"/>
+		<dataFlow dest="9" id="Data Flow 51" jMax="0" msgSize="91160" period="5443" source="6" tMax="902" vl="None"/>
+		<dataFlow dest="12" id="Data Flow 52" jMax="0" msgSize="10055" period="674" source="7" tMax="99" vl="None"/>
+		<dataFlow dest="12" id="Data Flow 53" jMax="0" msgSize="65599" period="1963" source="6" tMax="649" vl="None"/>
+		<dataFlow dest="12" id="Data Flow 54" jMax="0" msgSize="58111" period="9010" source="7" tMax="575" vl="None"/>
+		<dataFlow dest="10" id="Data Flow 55" jMax="0" msgSize="36637" period="7243" source="6" tMax="362" vl="None"/>
+		<dataFlow dest="8" id="Data Flow 56" jMax="0" msgSize="60748" period="2687" source="10" tMax="601" vl="None"/>
+		<dataFlow dest="8" id="Data Flow 57" jMax="0" msgSize="16502" period="9923" source="11" tMax="163" vl="None"/>
+		<dataFlow dest="9" id="Data Flow 58" jMax="0" msgSize="38556" period="3265" source="7" tMax="381" vl="None"/>
+		<dataFlow dest="10" id="Data Flow 59" jMax="0" msgSize="94204" period="6574" source="5" tMax="932" vl="None"/>
+		<dataFlow dest="12" id="Data Flow 60" jMax="0" msgSize="90727" period="8525" source="9" tMax="898" vl="None"/>
+		<dataFlow dest="7" id="Data Flow 61" jMax="0" msgSize="4610" period="1275" source="5" tMax="45" vl="None"/>
+		<dataFlow dest="6" id="Data Flow 62" jMax="0" msgSize="36389" period="4421" source="10" tMax="360" vl="None"/>
+		<dataFlow dest="10" id="Data Flow 63" jMax="0" msgSize="5147" period="7692" source="11" tMax="51" vl="None"/>
+		<dataFlow dest="7" id="Data Flow 64" jMax="0" msgSize="29261" period="8284" source="11" tMax="289" vl="None"/>
+		<dataFlow dest="11" id="Data Flow 65" jMax="0" msgSize="83566" period="1146" source="5" tMax="827" vl="None"/>
+		<dataFlow dest="5" id="Data Flow 66" jMax="0" msgSize="83759" period="7315" source="8" tMax="829" vl="None"/>
+		<dataFlow dest="6" id="Data Flow 67" jMax="0" msgSize="34313" period="9349" source="11" tMax="339" vl="None"/>
+		<dataFlow dest="11" id="Data Flow 68" jMax="0" msgSize="32835" period="8284" source="8" tMax="325" vl="None"/>
+		<dataFlow dest="6" id="Data Flow 69" jMax="0" msgSize="11970" period="9152" source="7" tMax="118" vl="None"/>
+		<dataFlow dest="11" id="Data Flow 70" jMax="0" msgSize="30534" period="7935" source="7" tMax="302" vl="None"/>
+		<dataFlow dest="9" id="Data Flow 71" jMax="0" msgSize="1719" period="8738" source="11" tMax="17" vl="None"/>
+		<dataFlow dest="10" id="Data Flow 72" jMax="0" msgSize="62127" period="636" source="8" tMax="615" vl="None"/>
+		<dataFlow dest="7" id="Data Flow 73" jMax="0" msgSize="45640" period="6646" source="9" tMax="451" vl="None"/>
+		<dataFlow dest="5" id="Data Flow 74" jMax="0" msgSize="90613" period="4687" source="8" tMax="897" vl="None"/>
+		<dataFlow dest="9" id="Data Flow 75" jMax="0" msgSize="67594" period="8794" source="7" tMax="669" vl="None"/>
+		<dataFlow dest="12" id="Data Flow 76" jMax="0" msgSize="2101" period="6448" source="8" tMax="20" vl="None"/>
+		<dataFlow dest="11" id="Data Flow 77" jMax="0" msgSize="37989" period="7568" source="10" tMax="376" vl="None"/>
+		<dataFlow dest="12" id="Data Flow 78" jMax="0" msgSize="79419" period="1458" source="8" tMax="786" vl="None"/>
+		<dataFlow dest="9" id="Data Flow 79" jMax="0" msgSize="73909" period="8883" source="5" tMax="731" vl="None"/>
+		<dataFlow dest="12" id="Data Flow 80" jMax="0" msgSize="27752" period="543" source="10" tMax="274" vl="None"/>
+		<dataFlow dest="12" id="Data Flow 81" jMax="0" msgSize="18789" period="5953" source="9" tMax="186" vl="None"/>
+		<dataFlow dest="7" id="Data Flow 82" jMax="0" msgSize="51328" period="7489" source="5" tMax="508" vl="None"/>
+		<dataFlow dest="10" id="Data Flow 83" jMax="0" msgSize="40191" period="2102" source="12" tMax="398" vl="None"/>
+		<dataFlow dest="11" id="Data Flow 84" jMax="0" msgSize="20457" period="2590" source="9" tMax="202" vl="None"/>
+		<dataFlow dest="12" id="Data Flow 85" jMax="0" msgSize="15697" period="1747" source="8" tMax="155" vl="None"/>
+		<dataFlow dest="6" id="Data Flow 86" jMax="0" msgSize="66660" period="9160" source="9" tMax="660" vl="None"/>
+		<dataFlow dest="12" id="Data Flow 87" jMax="0" msgSize="55486" period="4378" source="8" tMax="549" vl="None"/>
+		<dataFlow dest="9" id="Data Flow 88" jMax="0" msgSize="47440" period="5052" source="11" tMax="469" vl="None"/>
+		<dataFlow dest="11" id="Data Flow 89" jMax="0" msgSize="80854" period="3482" source="9" tMax="800" vl="None"/>
+		<dataFlow dest="12" id="Data Flow 90" jMax="0" msgSize="16198" period="8183" source="8" tMax="160" vl="None"/>
+		<dataFlow dest="7" id="Data Flow 91" jMax="0" msgSize="13082" period="9920" source="10" tMax="129" vl="None"/>
+		<dataFlow dest="6" id="Data Flow 92" jMax="0" msgSize="88031" period="352" source="8" tMax="871" vl="None"/>
+		<dataFlow dest="5" id="Data Flow 93" jMax="0" msgSize="80884" period="1142" source="8" tMax="800" vl="None"/>
+		<dataFlow dest="8" id="Data Flow 94" jMax="0" msgSize="31485" period="5979" source="11" tMax="311" vl="None"/>
+		<dataFlow dest="7" id="Data Flow 95" jMax="0" msgSize="55101" period="2553" source="5" tMax="545" vl="None"/>
+		<dataFlow dest="12" id="Data Flow 96" jMax="0" msgSize="30561" period="474" source="6" tMax="302" vl="None"/>
+		<dataFlow dest="10" id="Data Flow 97" jMax="0" msgSize="49739" period="2272" source="6" tMax="492" vl="None"/>
+		<dataFlow dest="10" id="Data Flow 98" jMax="0" msgSize="37442" period="3603" source="7" tMax="370" vl="None"/>
+		<dataFlow dest="8" id="Data Flow 99" jMax="0" msgSize="13072" period="3305" source="5" tMax="129" vl="None"/>
+		<dataFlow dest="8" id="Data Flow 100" jMax="0" msgSize="51446" period="3432" source="11" tMax="509" vl="None"/>
+	</dataFlows>
+</afdxxml>
